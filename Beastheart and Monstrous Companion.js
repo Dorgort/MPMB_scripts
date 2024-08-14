@@ -1,20 +1,19 @@
 var iFileName = "BMC";
-RequiredSheetVersion("13.1.7");
+RequiredSheetVersion("13.1.14");
 SourceList["BMC"] = {
 	name : "Beastheart and Monstrous Companion",
 	abbreviation : "BMC",
 	group : "MCDM Productions",
-	date : "2023/07/18",
+	date : "2024/08/14",
 };
 
-ClassList.beastheart = {
-	
-	regExpSearch : /beastheart/i,
+ClassList["beastheart"] = {
 	name : "Beastheart",
+	regExpSearch : /beastheart/i,
 	source : ["BMC", 25],
-	primaryAbility : ["Wisdom"],
+	primaryAbility : ["Wisdom, and Strength or Dexterity"],
 	abilitySave : 5,
-	prereqs : ["Strength/Dexterity 13", "Wisdom 13"],
+	prereqs : ["Wisdom 13, and Strength 13 or Dexterity 13"],
 	improvements : [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
 	die : 8,
 	saves : ["Str", "Wis"],
@@ -23,9 +22,11 @@ ClassList.beastheart = {
 	},
 	armorProfs : {
 		primary : [true, true, false, true],
+		secondary : [false, false, false, false]
 	},
 	weaponProfs : {
 		primary : [true, false, ["battleaxe", "greataxe", "longbow", "net", "scimitar", "shortsword"]],
+		secondary : [false, false]
 	},
 	equipment : "Beastheart starting equipment:" +
 		"\n \u2022 Hide armor -or- Leather Armor;\n \u2022 A longbow -and- 20 arrows;" +
@@ -550,7 +551,7 @@ ClassList.beastheart = {
 					"Athletics" : 5,
 				},	
 				senses : "",
-				damage_immunites : "Poison",
+				damage_immunities : "Poison",
 				condition_Immunities : ["Petrified", "Poisoned"],
 				senses : ["Darkvision 60 ft", "Tremmor Sense 30 ft"],
 				proficiencyBonus : 2,
@@ -652,7 +653,7 @@ ClassList.beastheart = {
 					"Stealth" : 1,
 				},	
 				senses : "",
-				damage_immunites : "Acid",
+				damage_immunities : "Acid",
 				condition_Immunities : ["Blinded", "Deafened", "Prone"],
 				senses : ["Blindsight 60 ft (Blind Beyond this Radius)"],
 				proficiencyBonus : 2,
@@ -1372,7 +1373,7 @@ ClassList.beastheart = {
 				scores : [8, 16, 15, 5, 12, 12],
 				saves : ["", "", "Prof", "", "", ""],
 				damage_immunities : ["Acid", "Poison"],
-				condition_immunites : "Poisoned",
+				condition_immunities : "Poisoned",
 				skills : {
 					"Perception" : 3,
 				},	
@@ -1735,7 +1736,7 @@ ClassList.beastheart = {
 		},	
 		"improved signature attack" : {
 			name : "Improved Signature Attack",
-			source ["BMC", 30],
+			source : ["BMC", 30],
 			minlevel : 5,
 			description : desc([
 				"Starting at 5th level, when your Companion hits with a Signature Weapon attack the attack deals one additional die of damage, this increases to two additional dice at 11th level and three additional dice at 17th level. Your Companion's attacks and ferocity actions now count as magical for the purpose of overcoming resistance and immunity to non-magical attacks.",
