@@ -1,7 +1,7 @@
-var iFileName = "BMC";
+var iFileName = "Beastheart and Monstrous Companions";
 RequiredSheetVersion("13.1.14");
 SourceList["BMC"] = {
-	name : "Beastheart and Monstrous Companion",
+	name : "Beastheart and Monstrous Companions",
 	abbreviation : "BMC",
 	group : "MCDM Productions",
 	date : "2024/08/14",
@@ -122,7 +122,7 @@ ClassList["beastheart"] = {
 						"must make a DC 10 plus PB Constitution saving throw. On a",
 						"failure, the creature magically begins to turn to stone and is",
 						"restrained. the creature must repeat the saving throw at the",
-						"end of their next turn. On a success, the efect ends. On a",
+						"end of their next turn. On a success, the effect ends. On a",
 						"failure, the creature is petrifed for 1 hour or until freed by",
 						"the lesser restoration spell or similar magic. (Lesser restoration",
 						"normally doesn’t negate the petrifed condition, but the ",
@@ -195,7 +195,7 @@ ClassList["beastheart"] = {
 					name : "1st Level: Distracting Attack (2 Ferocity)",
 					description : desc([
 						"The hawk makes a",
-						"signature attack. On a hit, the attack deals its normal efects,",
+						"signature attack. On a hit, the attack deals its normal effects,",
 						"and the next attack made against the target before the start of",
 						"the hawk’s next turn has advantage.",
 					]),
@@ -205,7 +205,7 @@ ClassList["beastheart"] = {
 						"The hawk moves up",
 						"to their speed without provoking opportunity attacks. During",
 						"or at the end of this move, they can make a signature attack",
-						"against one target. On a hit, the attack deals its normal efects,",
+						"against one target. On a hit, the attack deals its normal effects,",
 						"and the target must succeed on a DC 10 plus PB Strength saving",
 						"throw or drop one item they are holding.",
 					]),
@@ -473,8 +473,8 @@ ClassList["beastheart"] = {
 						"and aware of them must succeed on a DC 10 plus PB Wisdom",
 						"saving throw or become frightened of the wyrmling for 1",
 						"minute. A creature can repeat the saving throw at the end of",
-						"each of their turns, ending the efect on themself on a success.",
-						"If a creature’s saving throw is successful or the efect ends for",
+						"each of their turns, ending the effect on themself on a success.",
+						"If a creature’s saving throw is successful or the effect ends for",
 						"them, the creature is immune to the wyrmling’s Frightul Presence ",
 						"for the next 24 hours.",
 					]),
@@ -783,7 +783,7 @@ ClassList["beastheart"] = {
 					name : "1st Level: Destabilizing Attack (2 Ferocity)",
 					description : desc([
 						"The spider makes",
-						"a signature attack. On a hit, the attack deals its normal efects,",
+						"a signature attack. On a hit, the attack deals its normal effects,",
 						"and the target has disadvantage on the next attack roll they",
 						"make before the start of the spider’s next turn.",
 					]),
@@ -901,7 +901,7 @@ ClassList["beastheart"] = {
 					name : "3rd Level: Fast Food (5 Ferocity)",
 					description : desc([
 						"The toad makes a signature",
-						"attack. On a hit, the attack deals its normal efects, and the",
+						"attack. On a hit, the attack deals its normal effects, and the",
 						"toad can jump up to 20 feet in any direction without provoking",
 						"opportunity attacks. If the target of the attack is Large or",
 						"smaller, the toad brings the target with them.",
@@ -916,7 +916,7 @@ ClassList["beastheart"] = {
 						"On a success, the target takes half as much damage and",
 						"isn’t swallowed.",
 						"A swallowed target is blinded and restrained, they have total",
-						"cover against attacks and other efects outside the toad, and",
+						"cover against attacks and other effects outside the toad, and",
 						"they take PBd6 acid damage at the start of each of the toad’s",
 						"turns. The toad can have only one target swallowed at a time.",
 						"Whenever the toad takes damage, they must succeed on a",
@@ -939,7 +939,7 @@ ClassList["beastheart"] = {
 						"creature takes damage from the weapon, they must succeed",
 						"on a DC 10 + PB Constitution saving throw or become poisoned",
 						"for 1 minute. The creature can repeat the saving throw",
-						"at the end of each of their turns, ending the efect on themself",
+						"at the end of each of their turns, ending the effect on themself",
 						"on a success.",
 					]),
 				}], 
@@ -1020,7 +1020,7 @@ ClassList["beastheart"] = {
 					name : "3rd Level: Clamp Down (5 Ferocity)",
 					description : desc([
 						"The weasel makes a",
-						"signature attack. On a hit, the attack deals its normal efects,",
+						"signature attack. On a hit, the attack deals its normal effects,",
 						"and the target is grappled (escape DC 10 plus PB). While",
 						"grappled, the target is restrained and the weasel can’t bite",
 						"another target.",
@@ -1189,7 +1189,7 @@ ClassList["beastheart"] = {
 					name : "1st Level: Distracting Attack (2 Ferocity)",
 					description : desc([
 						"The mimic makes",
-						"a signature attack. On a hit, the attack deals its normal efects,",
+						"a signature attack. On a hit, the attack deals its normal effects,",
 						"and the next attack made against the target before the start of",
 						"the mimic’s next turn has advantage.",
 					]),
@@ -1225,7 +1225,7 @@ ClassList["beastheart"] = {
 						"will (no action required) as long as they are not incapacitated,",
 						"and has advantage on Dexterity (Stealth) checks. Any attack",
 						"that hits the caregiver also hits the mimic, and vice versa, with",
-						"both taking the full damage and efect of the attack.",
+						"both taking the full damage and effect of the attack.",
 						"While worn in this way, the mimic can’t move or take actions",
 						"except to revert to their most recent form (a bonus action),",
 						"which ends the state of being worn by their caregiver. If the",
@@ -1395,7 +1395,7 @@ ClassList["beastheart"] = {
 					description : desc([
 						"The sporeling",
 						"makes a signature attack. On a hit, the attack deals its normal",
-						"efects, and the target has disadvantage on the next attack roll",
+						"effects, and the target has disadvantage on the next attack roll",
 						"they make before the start of the sporeling’s next turn.",
 					]),
 				}, {
@@ -1548,7 +1548,8 @@ ClassList["beastheart"] = {
 			extraname : "Primal Exploits",
 			extrachoices : ["Aid Us, Friend", "Bring Them Down", "Drag Them", "Feral Reflexes", "Hurricane Blow", "No Escape", "Primal Pounce", "Quick Hide", "Thrash", "Crushing Charge", "Expanding Fury", "Furious Vengeance", "Marked Prey", "Primal Shout", "Wrath of the Pack", "Blood Sport", "Break the Earth", "Bury the Dead", "Imbue Projectile", "Rend", "Spirit Form"],
 			extraTimes : levels.map(function (n) {
-					return n < 2 ? 0 : n < 10 ? 3 : n > 17 ? 5 : 7;
+					return n < 2 ? 0 : n < 10 ? 3 : n <= 17 ? 15 : 7;
+
 			}),	
 			"aid us, friend" : {
 				name : "Aid Us, Friend",
@@ -1581,7 +1582,7 @@ ClassList["beastheart"] = {
 			"hurricane blow" : {
 				name : "Hurricane Blow",
 				source : ["BMC", 28],
-				description : "\n   " + "(3 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, the attack deals its normal efects, and you can push the target up to 10 feet away from you",
+				description : "\n   " + "(3 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, the attack deals its normal effects, and you can push the target up to 10 feet away from you",
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
@@ -1651,14 +1652,14 @@ ClassList["beastheart"] = {
 			"wrath of the pack" : {
 				name : "Wrath of the Pack",
 				source : ["BMC", 29],
-				description : "\n   " + "(4 Ferocity) When you hit a creature with an attack and that creature is within 5 feet of your companion, you can have your companion make a signature attack against the creature (no action required) On a hit, the attack deals its normal efects, and the target is knocked prone",
+				description : "\n   " + "(4 Ferocity) When you hit a creature with an attack and that creature is within 5 feet of your companion, you can have your companion make a signature attack against the creature (no action required) On a hit, the attack deals its normal effects, and the target is knocked prone",
 				action : [""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"blood sport" : {
 				name : "Blood Sport",
 				source : ["BMC", 29],
-				description : "\n   " + "(16 Ferocity) When you hit a Large or smaller creature with a melee weapon attack, you can also push the target up to 30 feet away from you and knock them prone If the target ends this move within 5 feet of your companion, the companion can make a signature attack against the target (no action required) On a hit, the attack deals its normal efects, and the target is pushed up to 30 feet away from your companion If the target ends this move within 5 feet of you, you can make a melee weapon attack against them (no action required) that deals an extra 4d6 damage if it hits",
+				description : "\n   " + "(16 Ferocity) When you hit a Large or smaller creature with a melee weapon attack, you can also push the target up to 30 feet away from you and knock them prone If the target ends this move within 5 feet of your companion, the companion can make a signature attack against the target (no action required) On a hit, the attack deals its normal effects, and the target is pushed up to 30 feet away from your companion If the target ends this move within 5 feet of you, you can make a melee weapon attack against them (no action required) that deals an extra 4d6 damage if it hits",
 				action : [""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
@@ -1719,9 +1720,9 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 3,
 			description : desc([
-				"You gain proficinecy in the Animal Handling Skill. If you already have proficiency your proficiency bonus is doubled for that skill.",
+				"You gain proficiency in the Animal Handling Skill. If you already have proficiency your proficiency bonus is doubled for that skill.",
 			]),
-			skills : "animal handling",
+			skillstxt : "proficiency in Animal Handling. If you are already proficient, gain expertise instead.",
 		},	
 		"beyond instinct" : {
 			name : "Beyond Instinct",
@@ -1729,7 +1730,7 @@ ClassList["beastheart"] = {
 			minlevel : 5,
 			description : desc([
 				"Whenever your companion gains ferocity at the start of your tun they gain an additional 1, at 10th level this increases to 3, and at 15th level it increases to 5.",
-				"Your companion gains proficincy with one saving throw of choice, they gain an addtional proficinecy at 10th level and at 15th level",
+				"Your companion gains proficiency with one saving throw of choice, they gain an addtional proficiency at 10th level and at 15th level",
 				"Your companion gains proficiency with one skill of choice (Acrobatics, Animal Handling, Athletics, Intimidation, Investigation, Perception, Performance, Sleight of Hand, Stealth, or Survival), you gain an additional skill proficiency of choice at 10th level, and 15th level.",
 				"Your Companion uses Wisdom in place of Intelligence for the Investigation skill, Strength or Dexterity in place of Charisma for the Intimidation or Performance skill.",
 			]),
@@ -1744,3 +1745,135 @@ ClassList["beastheart"] = {
 		},			
 	},
 };	
+
+AddSubClass("beastheart", "ferocious", {
+	regExpSearch : /ferocious/i,
+	subname : "Ferocious Bond",
+	source : ["BMC", 32],
+	features : {
+		"subclassfeature3" : {
+			name : "Frenzied Charge",
+			source : ["BMC", 32],
+			minlevel : 3,
+			description : "\n   " + "Whenever your companion enters a rampage, you can use a reaction to move up to your speed and make a melee weapon attack against a target at the end of the movement",
+		action : ["reaction", ""]
+		},
+		"subclassfeature3.1" : {
+			name : "Fury of the Wise",
+			source : ["BMC", 32],
+			minlevel : 3,
+			description : "\n   " + "You gain proficiency in the Intimidation skill if you do not already have it. Additionally, your Charisma (Intimidation) checks gain a bonus equal to your Wisdom modifer",
+			addMod : { type : "skill", field : "intimidation", mod : "max(Wis|0)", text : "I can add my Wisdom modifier to my Charisma (Intimidation) checks." }
+		},
+		"subclassfeature7" : {
+			name : "Energizing Rampage",
+			source : ["BMC", 32],
+			minlevel : 7,
+			description : "\n" + "When your companion ends a rampage, their ferocity drops to 4 instead of 0"
+		},
+		"subclassfeature11" : {
+			name : "Furious Rampage",
+			source : ["BMC", 32],
+			minlevel : 11,
+			description : "\n" + "Whenever your companion hits one of your enemies with a signature attack during a rampage, the attack deals extra damage equal to the companion’s ferocity (instead of half their ferocity) Additionally, whenever your companion attacks a target within 5 feet of you while in a rampage, they make the attack with advantage If you attack a creature within 5 feet of your companion when you use Frenzied Charge, you make your attack with advantage"
+		},
+		"subclassfeature15" : {
+			name : "Invigorated Rampage",
+			source : ["BMC", 33],
+			minlevel : 15,
+			description : "\n" + "When your companion hits another creature with their signature attack while in a rampage, or if you hit another creature with the attack granted to you by Frenzied Charge, the target is either blinded, deafened, or frightened of the attacker (your choice) until the end of the target’s next turn"
+		}
+	}
+});
+
+AddSubClass("beastheart", "hunter", {
+	regExpSearch : /hunter/i,
+	subname : "Hunter Bond",
+	source : ["BMC", 34],
+	features : {
+		"subclassfeature3" : {
+			name : "Chosen Quarry",
+			source : ["BMC", 34],
+			minlevel : 3,
+			description : "\n   " + "you and your companion can single out a creature as your prey Whenever your companion gains ferocity at the start of your turn and doesn’t enter a rampage, you can spend 4 ferocity to mark a creature within 90 feet of you (no action required) That creature becomes your quarry for 1 minute, or until you use this feature to mark another target as your quarry Whenever you or your companion hit your quarry with a weapon attack or deal damage to them with a ferocity action, the quarry takes an extra 1d6 damage"
+		},
+		"subclassfeature3.1" : {
+			name : "Hunter’s Instincts",
+			source : ["BMC", 34],
+			minlevel : 3,
+			description : "\n   " + "You gain proficiency and expertise in the Survival skill if you do not already have it, and you can use Survival instead of Insight when you make a Wisdom check to read a creature’s intentions or discern if a creature is lying",
+			skillstxt : "Survival proficiency and expertise",
+			skills : ["Survival", "full"]
+		},
+		"subclassfeature7" : {
+			name : "Primal Warding",
+			source : ["BMC", 34],
+			minlevel : 7,
+			description : "\n" + "As an action, you trap a 10-foot-square area of ground centered on a point you can see within 30 feet of you, with the trap lasting for 8 hours or until it is triggered When you set the trap, you can designate any number of specifc creatures that are unafected by it Finding the trap requires a successful Intelligence (Investigation) check against your exploit save DC. A creature that walks into the trap’s area triggers the trap and must make a Constitution saving throw against your exploit save DC On a failure, the creature takes 4d8 force damage and is blinded for 1 minute On a success, the creature takes half as much damage and isn’t blinded A creature blinded by the trap can repeat the saving throw at the end of each of their turns, ending the effect on themself on a success. A mental alarm alerts you with a ping in your mind if you are within 1 mile of the trap when it is triggered This ping awakens you if you are sleeping If you set more than one trap, you know which one was triggered You can use this feature to set a number of traps equal to your Wisdom modifer (minimum one) You regain all expended uses when you finish a long rest",
+			action : ["action", ""],
+			usages : "Wisdom modifier per ",
+			usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
+			recovery : "long rest"
+		},
+		"subclassfeature11" : {
+			name : "Synchronized Stealth",
+			source : ["BMC", 34],
+			minlevel : 11,
+			description : "\n" + "When either you or your companion takes the Hide action, the other can take the Hide action as a reaction if they are able to hide Additionally, when you take the Hide action within 5 feet of your companion, you have advantage on the Dexterity (Stealth) check made as part of the action"
+		},
+		"subclassfeature15" : {
+			name : "Unseen Hunters",
+			source : ["BMC", 34],
+			minlevel : 15,
+			description : "\n" + "You can use an action to make you and your companion invisible for 10 minutes. While invisible, neither of you can be tracked by nonmagical means unless you or your companion chooses to leave a trail. Either of you can end the invisibility on yourself as a bonus action. Once you use this feature, you can use it again when you finish a long rest",
+			action : ["action", ""],
+			usages : 1,
+			recovery : "long rest"
+		}
+	}
+});
+
+AddSubClass("beastheart", "infernal", {
+	regExpSearch : /infernal/i,
+	subname : "Infernal  Bond",
+	source : ["BMC", 36],
+	features : {
+		"subclassfeature3" : {
+			name : "Devil’s Understanding",
+			source : ["BMC", 36],
+			minlevel : 3,
+			description : "\n   " + "you can speak, write, and understand Infernal. Additionally, you gain proficiency in the Arcana or Religion skill (your choice) if you do not already have proficiency in those skills",
+			languageProfs : ["Infernal"],
+			skillstxt : "Choose Arcana or Religion. You gain proficiency."
+		},
+		"subclassfeature3.1" : {
+			name : "Infernal Exploits",
+			source : ["BMC", 36],
+			minlevel : 3,
+			description : "\n   " + "you gain one infernal exploit of your choice, which functions in the same manner as your primal exploits and uses your exploit save DC as applicable The exploit you choose must be one available at 3rd level. You gain one additional infernal exploit at 11th level Whenever you gain a level in this class, you can choose one of the infernal exploits you know and replace it with another infernal exploit, for which you must have the appropriate beastheart level TODO"
+		},
+		"subclassfeature7" : {
+			name : "Hell’s Charmer",
+			source : ["BMC", 38],
+			minlevel : 7,
+			description : "\n" + "your companion can harness the supernatural charm of devils to work enchantment magic on other creatures As an action, choose one creature that can see you and your companion within 30 feet of you. That creature must make a Wisdom saving throw, doing so with advantage if you or your allies are fighting them On a success, the creature knows you tried to charm them and becomes hostile toward you and your companion On a failure, the creature is charmed by you and your companion for 10 minutes, or until you or your allies do anything physically, mentally, or emotionally harmful to the creature The charmed creature is friendly to you When this effect ends, a charmed creature doesn’t remember what happened during the time they were charmed. You can use this feature a number of times equal to your Wisdom modifer (minimum once) You regain all uses when you fnish a long rest",
+			action : ["action", ""],
+			usages : "Wisdom modifier per ",
+			usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
+			recovery : "long rest"
+		},
+		"subclassfeature11" : {
+			name : "Fiendish Traits",
+			source : ["BMC", 38],
+			minlevel : 11,
+			description : "\n" + "your companion’s connection to Hell causes them to become more fendish. Choose one trait for your companion TODO"
+		},
+		"subclassfeature15" : {
+			name : "Fiendish Form",
+			source : ["BMC", 38],
+			minlevel : 15,
+			description : "\n" + "your companion can become a scale-covered child of Hell As a bonus action, you can spend 6 ferocity to transform your companion into a fendish form for 1 minute While in this form, your companion undergoes the following changes: 1. They are a fend 2. They have resistance to bludgeoning, piercing, and slashing damage 3. They have advantage on saving throws against spells and other magical effects",
+			action : ["bonus action", ""],
+		}
+	}
+});

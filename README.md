@@ -1,2 +1,2 @@
 # MPMB_scripts
-Scripts Created by me for the MPMB Character Sheet 
+Scripts for the [MPMB Character Sheet](https://www.flapkan.com/) 
