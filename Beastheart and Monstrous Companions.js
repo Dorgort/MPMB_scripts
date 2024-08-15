@@ -42,7 +42,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 6],
 			minlevel : 1,
 			description : desc([
-				"At the start of each turn while not incapacitated your Companion gains 1d4 + (1 times the number of creatures within 5 feet of it(multiple creatures that share the same stat block such as a swarm of rats count as one creature.)) ferocity points, these points are used to power your companion's abilities as well as your abilities. There is no Maximum to the amount of Ferocity your companion can have. When Combat ends and your companion isn't dying your companion regains a number of hit points equal to its current ferocity and their ferocity drops to 0.",
+				"At the start of each turn while not incapacitated your Companion gains 1d4 + (1 times the number of creatures within 5 feet of it (multiple creatures that share the same stat block such as a swarm of rats count as one creature.)) ferocity points, these points are used to power your companion's abilities as well as your abilities. There is no Maximum to the amount of Ferocity your companion can have. When Combat ends and your companion isn't dying your companion regains a number of hit points equal to its current ferocity and their ferocity drops to 0.",
 			]),
 		},	
 		"rampage" : {
@@ -50,7 +50,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 6],
 			minlevel : 1,
 			description : desc([
-				"After you roll to increase your companion's ferocity if the companion has 10 ferocity or more you may make a Wisdom (Animal Handling) check DC 5 + Companion's Ferocity, to prevent your companion from entering a rampage. If you fail the DC, or choose not to make the check your Companion enters a Ramapge.  When a companion enters a rampage they immediately move up to their speed towards the nearest creature and make a signature attack dealing extra damage equal to half their ferocity rounded up, if there is a ally and enemy equidistant from your companion roll a die on odd numbers it attacks the ally, on even numbers it attacks the enemy. If your companion's movement is not enought to bring it within attacking range it uses the Dash action to get to the nearest creature. If the companion cant sense any potential targets they move as far as they can in a random direction avoiding danger. When a companion who has entered a rampage resolves their action or ends their turn, their ferocity drops to 0 and they are no longer in a rampage",
+				"After you roll to increase your companion's ferocity if the companion has 10 ferocity or more you may make a Wisdom (Animal Handling) check DC 5 + Companion's Ferocity, to prevent your companion from entering a rampage. If you fail the DC, or choose not to make the check your Companion enters a Ramapge. When a companion enters a rampage they immediately move up to their speed towards the nearest creature and make a signature attack dealing extra damage equal to half their ferocity rounded up, if there is a ally and enemy equidistant from your companion roll a die on odd numbers it attacks the ally, on even numbers it attacks the enemy. If your companion's movement is not enought to bring it within attacking range it uses the Dash action to get to the nearest creature. If the companion can't sense any potential targets they move as far as they can in a random direction avoiding danger. When a companion who has entered a rampage resolves their action or ends their turn, their ferocity drops to 0 and they are no longer in a rampage",
 			]),
 		},	
 		"companion" : {
@@ -139,7 +139,7 @@ ClassList["beastheart"] = {
 						"reduced by 10 feet until the start of their next turn.",
 					]),
 					action : "reaction",
-				}],       
+				}],
 				header : "Mostrocity",
 					calcChanges : {
 						hp : function (totalHD, HDobj, prefix) {
@@ -147,7 +147,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -239,7 +239,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(6 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 6 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 6 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -312,7 +312,7 @@ ClassList["beastheart"] = {
 						"is available, the creature instead is knocked prone in",
 						"the bulette’s space.",
 					]),
-				}],  
+				}],
 				traits : [{
 					name : "Plated Protection",
 					description : desc([
@@ -326,7 +326,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -402,7 +402,7 @@ ClassList["beastheart"] = {
 						"until they are no longer grappled. If the deinonychus attacks or",
 						"uses Keep them Down on another target, the grapple ends.",
 					]),
-				}],    
+				}], 
 				header : "Beast",
 					calcChanges : {
 						hp : function (totalHD, HDobj, prefix) {
@@ -410,7 +410,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -519,7 +519,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -621,7 +621,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -723,7 +723,7 @@ ClassList["beastheart"] = {
 					description : desc([
 						"Even when the cube is in plain sight, it takes a",
 						"successful DC 10 plus PB Wisdom (Perception) check to spot a",
-						"cube that has neither moved nor atacked. A creature that tries",
+						"cube that has neither moved nor attacked. A creature that tries",
 						"to enter the cube’s space while unaware of the cube takes 3",
 						"(1d6) acid damage and can’t enter the space.",
 					]),
@@ -735,7 +735,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(8 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 8 as a base\n + "  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 8 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -844,7 +844,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(6 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 6 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 6 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -962,7 +962,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1048,7 +1048,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1139,7 +1139,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1257,7 +1257,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1344,7 +1344,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1438,7 +1438,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1483,10 +1483,10 @@ ClassList["beastheart"] = {
 					abilitytodamage : false,
 				}],
 				features : [{
-					name : "1st Level: Overwhelming Atack (2 Ferocity)",
+					name : "1st Level: Overwhelming Attack (2 Ferocity)",
 					description : desc([
 						"Te worg makes",
-						"a signature atack. On a hit, the atack deals an extra PB",
+						"a signature attack. On a hit, the attack deals an extra PB",
 						"damage, and the target can’t take reactions until the start of the",
 						"worg’s next turn.",
 					]),
@@ -1494,15 +1494,15 @@ ClassList["beastheart"] = {
 					name : "3rd Level: Brutal Charge (5 Ferocity)",
 					description : desc([
 						"Te worg moves up",
-						"to their speed without provoking opportunity atacks. During",
-						"or at the end of this move, they can make a signature atack",
+						"to their speed without provoking opportunity attacks. During",
+						"or at the end of this move, they can make a signature attack",
 						"against one target.",
 					]),
 				}, {
 					name : "5th Level: Bite Frenzy (8 Ferocity)",
 					description : desc([
 						"Te worg makes bite",
-						"atacks against PB creatures of their choice within 5 feet of",
+						"attacks against PB creatures of their choice within 5 feet of",
 						"them. On a hit, a target is knocked prone.",
 					]),
 				}], 
@@ -1510,7 +1510,7 @@ ClassList["beastheart"] = {
 					name : "Move as One",
 					description : desc([
 						"While the worg’s caregiver is mounted on the",
-						"worg, opportunity atacks against the worg or their caregiver",
+						"worg, opportunity attacks against the worg or their caregiver",
 						"are made with disadvantage. Te worg’s caregiver can mount",
 						"or dismount the worg by spending 5 feet of movement.",
 					]),
@@ -1522,7 +1522,7 @@ ClassList["beastheart"] = {
 							var wisMod = Number(What('Wis Mod'));
 							var beaLvl = classes.known.beastheart.level;
 							HDobj.alt.push(7 + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl + beaLvl);
-							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level"  + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
+							HDobj.altStr.push(" = 7 as a base\n + " + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level" + beaLvl + " from your beastheart level");
 						},
 						setAltHp : true,
 						hpForceRecalc : true
@@ -1535,7 +1535,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 27],
 			minlevel : 1,
 			description : desc([
-				"You can communicate simple thoughts or questions with your companion as well as other beasts and monstrocities. While speaking in this way you can make Wisdom (Animal Handling) checks in place of Charisma checks to influence these creatures.",
+				"You can communicate simple thoughts or questions with your companion as well as other beasts and monstrosities. While speaking in this way you can make Wisdom (Animal Handling) checks in place of Charisma checks to influence these creatures.",
 			]),
 		},
 		"primal exploits" : {
@@ -1554,147 +1554,189 @@ ClassList["beastheart"] = {
 			"aid us, friend" : {
 				name : "Aid Us, Friend",
 				source : ["BMC", 28],
-				description : "\n   " + "(3 Ferocity) You can activate this exploit whenever you take the Attack action Before or after you attack, your companion can take the Help action as a bonus action",
+				description : desc([
+					"(3 Ferocity) You can activate this exploit whenever you take the Attack action Before or after you attack, your companion can take the Help action as a bonus action"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},	
 			"bring them down" : {
 				name : "Bring Them Down",
 				source : ["BMC", 28],
-				description : "\n   " + "(4 Ferocity) When your companion hits a creature with their signature attack, you can use your reaction to command the companion to yank the target down The target must succeed on a Strength saving throw or fall prone",
+				description : desc([
+					"(4 Ferocity) When your companion hits a creature with their signature attack, you can use your reaction to command the companion to yank the target down The target must succeed on a Strength saving throw or fall prone"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},	
 			"drag them" : {
 				name : "Drag Them",
 				source : ["BMC", 28],
-				description : "\n   " + "(4 Ferocity) When your companion hits a Large or smaller creature with their signature attack and both the companion and the target are standing on the ground, you can use your reaction to command your companion to move the target The target must make a Strength saving throw On a failure, the companion moves up to half their walking speed in any direction you choose and pulls the target with it",
+				description : desc([
+					"(4 Ferocity) When your companion hits a Large or smaller creature with their signature attack and both the companion and the target are standing on the ground, you can use your reaction to command your companion to move the target The target must make a Strength saving throw On a failure, the companion moves up to half their walking speed in any direction you choose and pulls the target with it"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"feral reflexes" : {
 				name : "Feral Reflexes",
 				source : ["BMC", 28],
-				description : "\n   " + "(2 Ferocity) When you or your companion is hit by an attack, you can use your reaction to increase the target’s AC by 2 against the triggering attack",
+				description : desc([
+					"(2 Ferocity) When you or your companion is hit by an attack, you can use your reaction to increase the target’s AC by 2 against the triggering attack"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"hurricane blow" : {
 				name : "Hurricane Blow",
 				source : ["BMC", 28],
-				description : "\n   " + "(3 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, the attack deals its normal effects, and you can push the target up to 10 feet away from you",
+				description : desc([
+					"(3 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, the attack deals its normal effects, and you can push the target up to 10 feet away from you"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"no escape" : {
 				name : "No Escape",
 				source : ["BMC", 28],
-				description : "\n   " + "(1+ Ferocity) At the start of your turn when your companion gains ferocity and doesn’t enter a rampage, you can spend up to your Wisdom modifer in ferocity (minimum 1; no action required) Until the start of your next turn, your speed or your companion’s speed (your choice) increases by 5 feet × the ferocity spent",
+				description : desc([
+					"(1+ Ferocity) At the start of your turn when your companion gains ferocity and doesn’t enter a rampage, you can spend up to your Wisdom modifer in ferocity (minimum 1; no action required) Until the start of your next turn, your speed or your companion’s speed (your choice) increases by 5 feet × the ferocity spent"
+				]),
 				action : [""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"primal pounce" : {
 				name : "Primal Pounce",
 				source : ["BMC", 28],
-				description : "\n   " + "(3 Ferocity) When your companion hits a creature with their signature attack, you can use your reaction to command the companion to grapple the target The target must make a Dexterity saving throw On a failure, the companion grabs the target and the target is grappled (escape DC equal to your exploit save DC) The grapple also ends if your companion attacks a creature other than the target",
+				description : desc([
+					"(3 Ferocity) When your companion hits a creature with their signature attack, you can use your reaction to command the companion to grapple the target The target must make a Dexterity saving throw On a failure, the companion grabs the target and the target is grappled (escape DC equal to your exploit save DC) The grapple also ends if your companion attacks a creature other than the target"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"quick hide" : {
 				name : "Quick Hide",
 				source : ["BMC", 28],
-				description : "\n   " + "(2 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, your companion can take the Hide action as a reaction if they are able to hide",
+				description : desc([
+					"(2 Ferocity) You can activate this exploit whenever you take the Attack action The frst time you hit a creature with a weapon attack this turn, your companion can take the Hide action as a reaction if they are able to hide"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"thrash" : {
 				name : "Thrash",
 				source : ["BMC", 28],
-				description : "\n   " + "(4 Ferocity) When your companion hits a Large or smaller creature with a melee signature attack, you can use your reaction to command the companion to thrash the target from side to side, forcing them to make a Wisdom saving throw On a failure, the target has disadvantage on attack rolls, and attack rolls against the target have advantage, until the start of your next turn",
+				description : desc([
+					"(4 Ferocity) When your companion hits a Large or smaller creature with a melee signature attack, you can use your reaction to command the companion to thrash the target from side to side, forcing them to make a Wisdom saving throw On a failure, the target has disadvantage on attack rolls, and attack rolls against the target have advantage, until the start of your next turn"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 2; },
 			},
 			"crushing charge" : {
 				name : "Crushing Charge",
 				source : ["BMC", 29],
-				description : "\n   " + "(8 Ferocity) As an action, you move up to your speed in a straight line without provoking opportunity attacks You can move through other creatures’ spaces, but must end your move in an unoccupied space Each creature in a space you move through, except for your companion, must make a Strength saving throw On a failure, a creature takes 4d6 bludgeoning damage and is knocked prone On a success, the creature takes half as much damage and isn’t knocked prone When you reach 17th level, the damage increases to 5d6",
+				description : desc([
+					"(8 Ferocity) As an action, you move up to your speed in a straight line without provoking opportunity attacks You can move through other creatures’ spaces, but must end your move in an unoccupied space Each creature in a space you move through, except for your companion, must make a Strength saving throw On a failure, a creature takes 4d6 bludgeoning damage and is knocked prone On a success, the creature takes half as much damage and isn’t knocked prone When you reach 17th level, the damage increases to 5d6"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"expanding fury" : {
 				name : "Expanding Fury",
 				source : ["BMC", 29],
-				description : "\n   " + "(6 Ferocity) When your companion uses a ferocity action that afects creatures within a specifc distance of the companion, you can use your reaction to expand that distance by 10 feet",
+				description : desc([
+					"(6 Ferocity) When your companion uses a ferocity action that afects creatures within a specifc distance of the companion, you can use your reaction to expand that distance by 10 feet"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"furious vengeance" : {
 				name : "Furious Vengeance",
 				source : ["BMC", 29],
-				description : "\n   " + "(5 Ferocity) When a creature hits you or your companion with a melee attack, you can use your reaction to deal 4d6 psychic damage to the attacker When you reach 17th level, the damage increases to 5d6",
+				description : desc([
+					"(5 Ferocity) When a creature hits you or your companion with a melee attack, you can use your reaction to deal 4d6 psychic damage to the attacker When you reach 17th level, the damage increases to 5d6"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"marked prey" : {
 				name : "Marked Prey",
 				source : ["BMC", 29],
-				description : "\n   " + "(4 Ferocity) When your companion uses a ferocity action that requires a creature to make a saving throw, you can use your reaction to impose disadvantage on the save",
+				description : desc([
+					"(4 Ferocity) When your companion uses a ferocity action that requires a creature to make a saving throw, you can use your reaction to impose disadvantage on the save"
+				]),
 				action : ["reaction"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"primal shout" : {
 				name : "Primal Shout",
 				source : ["BMC", 29],
-				description : "\n   " + "(6 Ferocity) As an action, you let loose a menacing bellow Each creature of your choice that can hear you within 15 feet of you must succeed on a Wisdom saving throw or become frightened of you until the end of your next turn",
+				description : desc([
+					"(6 Ferocity) As an action, you let loose a menacing bellow Each creature of your choice that can hear you within 15 feet of you must succeed on a Wisdom saving throw or become frightened of you until the end of your next turn"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"wrath of the pack" : {
 				name : "Wrath of the Pack",
 				source : ["BMC", 29],
-				description : "\n   " + "(4 Ferocity) When you hit a creature with an attack and that creature is within 5 feet of your companion, you can have your companion make a signature attack against the creature (no action required) On a hit, the attack deals its normal effects, and the target is knocked prone",
+				description : desc([
+					"(4 Ferocity) When you hit a creature with an attack and that creature is within 5 feet of your companion, you can have your companion make a signature attack against the creature (no action required) On a hit, the attack deals its normal effects, and the target is knocked prone"
+				]),
 				action : [""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 10; },
 			},
 			"blood sport" : {
 				name : "Blood Sport",
 				source : ["BMC", 29],
-				description : "\n   " + "(16 Ferocity) When you hit a Large or smaller creature with a melee weapon attack, you can also push the target up to 30 feet away from you and knock them prone If the target ends this move within 5 feet of your companion, the companion can make a signature attack against the target (no action required) On a hit, the attack deals its normal effects, and the target is pushed up to 30 feet away from your companion If the target ends this move within 5 feet of you, you can make a melee weapon attack against them (no action required) that deals an extra 4d6 damage if it hits",
+				description : desc([
+					"(16 Ferocity) When you hit a Large or smaller creature with a melee weapon attack, you can also push the target up to 30 feet away from you and knock them prone If the target ends this move within 5 feet of your companion, the companion can make a signature attack against the target (no action required) On a hit, the attack deals its normal effects, and the target is pushed up to 30 feet away from your companion If the target ends this move within 5 feet of you, you can make a melee weapon attack against them (no action required) that deals an extra 4d6 damage if it hits"
+				]),
 				action : [""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
 			"break the earth" : {
 				name : "Break the Earth",
 				source : ["BMC", 29],
-				description : "\n   " + "(14 Ferocity) As an action, you open a 10-foot-radius pit in the ground, foor, or other surface within 60 feet of you The pit can be up to 50 feet deep, depending on the depth beneath the surface where it is opened Each creature standing in the area when the pit opens must make a Dexterity saving throw On a failure, a creature falls into the pit, taking 1d6 bludgeoning damage per 10 feet fallen and landing prone On a success, the creature moves to an unoccupied space of their choice at the edge of the pit A creature can climb the rough walls of the pit without an ability check",
+				description : desc([
+					"(14 Ferocity) As an action, you open a 10-foot-radius pit in the ground, foor, or other surface within 60 feet of you The pit can be up to 50 feet deep, depending on the depth beneath the surface where it is opened Each creature standing in the area when the pit opens must make a Dexterity saving throw On a failure, a creature falls into the pit, taking 1d6 bludgeoning damage per 10 feet fallen and landing prone On a success, the creature moves to an unoccupied space of their choice at the edge of the pit A creature can climb the rough walls of the pit without an ability check"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
 			"bury the dead" : {
 				name : "Bury the Dead",
 				source : ["BMC", 29],
-				description : "\n   " + "(16 Ferocity) When you and your companion are within 5 feet of a creature, you can use an action to cause a vicious whirlwind flled with debris and dirt to rise around the creature, which must make a Dexterity saving throw On a failure, the creature takes 8d6 bludgeoning damage, is knocked prone, and is restrained On a success, the target takes half as much damage and isn’t knocked prone or restrained A creature restrained this way can use an action to make a Strength (Athletics) check against your exploit save DC, freeing themself on a success",
+				description : desc([
+					"(16 Ferocity) When you and your companion are within 5 feet of a creature, you can use an action to cause a vicious whirlwind flled with debris and dirt to rise around the creature, which must make a Dexterity saving throw On a failure, the creature takes 8d6 bludgeoning damage, is knocked prone, and is restrained On a success, the target takes half as much damage and isn’t knocked prone or restrained A creature restrained this way can use an action to make a Strength (Athletics) check against your exploit save DC, freeing themself on a success"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
 			"imbue projectile" : {
 				name : "Imbue Projectile",
 				source : ["BMC", 29],
-				description : "\n   " + "(14 Ferocity) As an action, you make a ranged weapon attack Whether or not the attack hits, a wave of energy explodes from the weapon or ammunition used in the attack, centered on your target Each creature within 20 feet of the target (including the target and excluding your companion) must make a Dexterity saving throw, taking 10d6 force damage on a failed save, or half as much damage on a successful one",
+				description : desc([
+					"(14 Ferocity) As an action, you make a ranged weapon attack Whether or not the attack hits, a wave of energy explodes from the weapon or ammunition used in the attack, centered on your target Each creature within 20 feet of the target (including the target and excluding your companion) must make a Dexterity saving throw, taking 10d6 force damage on a failed save, or half as much damage on a successful one"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
 			"rend" : {
 				name : "Rend",
 				source : ["BMC", 29],
-				description : "\n   " + "(12 Ferocity) As an action, choose a creature you can see within 5 feet of you and your companion You make a melee weapon attack against the target, and your companion makes a signature attack against the target (no actions required) If you both hit and deal damage to the target, the target is knocked prone and takes an additional 6d6 damage of a type dealt by either attack (your choice)",
+				description : desc([
+					"(12 Ferocity) As an action, choose a creature you can see within 5 feet of you and your companion You make a melee weapon attack against the target, and your companion makes a signature attack against the target (no actions required) If you both hit and deal damage to the target, the target is knocked prone and takes an additional 6d6 damage of a type dealt by either attack (your choice)"
+				]),
 				action : ["action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
 			"spirit form" : {
 				name : "Spirit Form",
 				source : ["BMC", 30],
-				description : "\n   " + "(14 Ferocity) As a bonus action, you make you and your companion incorporeal until the end of your next turn While incorporeal, you each have resistance to acid, cold, fre, lightning, and thunder damage, and to bludgeoning, piercing, and slashing damage from nonmagical attacks While incorporeal, you and your companion each gain a fying speed equal to your individual walking speed, and each of you can move through other creatures and objects as if they were difcult terrain Either of you takes 5 (1d10) force damage if you end your turn inside an object",
+				description : desc([
+					"(14 Ferocity) As a bonus action, you make you and your companion incorporeal until the end of your next turn While incorporeal, you each have resistance to acid, cold, fre, lightning, and thunder damage, and to bludgeoning, piercing, and slashing damage from nonmagical attacks While incorporeal, you and your companion each gain a fying speed equal to your individual walking speed, and each of you can move through other creatures and objects as if they were difcult terrain Either of you takes 5 (1d10) force damage if you end your turn inside an object"
+				]),
 				action : ["bonus action"],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 17; },
 			},
@@ -1704,7 +1746,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 2,
 			description : desc([
-				"whenever your companion uses a ferocity action that requires a crea. to make an ability check or save. your companion can use your Primal Exploit DC in place of it's DC.",
+				"Whenever your companion uses a ferocity action that requires a crea. to make an ability check or save. your companion can use your Primal Exploit DC in place of it's DC.",
 			]),
 		},
 		"subclassfeature3" : {
@@ -1712,7 +1754,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 3,
 			description : desc([
-				"You Specialize a bond between you and your Companion, granting you one of the following subclasses 'Ferocious Bond', 'Hunter Bond', 'Infernal Bond', 'Primordial Bond', or 'Protector Bond' you gain features from this subclass at 3rd, 7th, 11th, and 15th level.",
+				"You choose a bond between you and your Companion, granting you one of the following subclasses 'Ferocious Bond', 'Hunter Bond', 'Infernal Bond', 'Primordial Bond', or 'Protector Bond' you gain features from this subclass at 3rd, 7th, 11th, and 15th level.",
 			])
 		},	
 		"master caregiver" : {
@@ -1722,7 +1764,8 @@ ClassList["beastheart"] = {
 			description : desc([
 				"You gain proficiency in the Animal Handling Skill. If you already have proficiency your proficiency bonus is doubled for that skill.",
 			]),
-			skillstxt : "proficiency in Animal Handling. If you are already proficient, gain expertise instead.",
+			skills : [["Animal Handling", "increment"]],
+			skillstxt : "You gain Animal Handling proficiency or expertise if you are already proficient"			
 		},	
 		"beyond instinct" : {
 			name : "Beyond Instinct",
@@ -1755,33 +1798,47 @@ AddSubClass("beastheart", "ferocious", {
 			name : "Frenzied Charge",
 			source : ["BMC", 32],
 			minlevel : 3,
-			description : "\n   " + "Whenever your companion enters a rampage, you can use a reaction to move up to your speed and make a melee weapon attack against a target at the end of the movement",
-		action : ["reaction", ""]
+			description : desc([
+				"Whenever your companion enters a rampage, you can use a reaction to move up to your speed and make a melee weapon attack against a target at the end of the movement.",
+			]),
+			action : ["reaction", "(on rampage)"]
 		},
 		"subclassfeature3.1" : {
 			name : "Fury of the Wise",
 			source : ["BMC", 32],
 			minlevel : 3,
-			description : "\n   " + "You gain proficiency in the Intimidation skill if you do not already have it. Additionally, your Charisma (Intimidation) checks gain a bonus equal to your Wisdom modifer",
-			addMod : { type : "skill", field : "intimidation", mod : "max(Wis|0)", text : "I can add my Wisdom modifier to my Charisma (Intimidation) checks." }
+			description : desc([
+				"You gain proficiency in the Intimidation skill if you do not already have it. Additionally, your Charisma (Intimidation) checks gain a bonus equal to your Wisdom modifer",
+			]),
+			addMod : { type : "skill", field : "intimidation", mod : "max(Wis|0)", text : "I can add my Wisdom modifier to my Charisma (Intimidation) checks." },
+			skillstxt : "You gain Intimidation proficiency.",
+			skills : ["Intimidation"]
 		},
 		"subclassfeature7" : {
 			name : "Energizing Rampage",
 			source : ["BMC", 32],
 			minlevel : 7,
-			description : "\n" + "When your companion ends a rampage, their ferocity drops to 4 instead of 0"
+			description : desc([
+				"When your companion ends a rampage, their ferocity drops to 4 instead of 0."
+			]),
 		},
 		"subclassfeature11" : {
 			name : "Furious Rampage",
 			source : ["BMC", 32],
 			minlevel : 11,
-			description : "\n" + "Whenever your companion hits one of your enemies with a signature attack during a rampage, the attack deals extra damage equal to the companion’s ferocity (instead of half their ferocity) Additionally, whenever your companion attacks a target within 5 feet of you while in a rampage, they make the attack with advantage If you attack a creature within 5 feet of your companion when you use Frenzied Charge, you make your attack with advantage"
+			description : desc([
+				"Whenever your companion hits one of your enemies with a signature attack during a rampage, the attack deals extra damage equal to the companion’s ferocity (instead of half their ferocity).",
+				"Additionally, whenever your companion attacks a target within 5 feet of you while in a rampage, they make the attack with advantage.",
+				"If you attack a creature within 5 feet of your companion when you use Frenzied Charge, you make your attack with advantage."
+			]),
 		},
 		"subclassfeature15" : {
 			name : "Invigorated Rampage",
 			source : ["BMC", 33],
 			minlevel : 15,
-			description : "\n" + "When your companion hits another creature with their signature attack while in a rampage, or if you hit another creature with the attack granted to you by Frenzied Charge, the target is either blinded, deafened, or frightened of the attacker (your choice) until the end of the target’s next turn"
+			description :desc([
+				"When your companion hits another creature with their signature attack while in a rampage, or if you hit another creature with the attack granted to you by Frenzied Charge, the target is either blinded, deafened, or frightened of the attacker (your choice) until the end of the target’s next turn"
+			]),
 		}
 	}
 });
@@ -1795,21 +1852,33 @@ AddSubClass("beastheart", "hunter", {
 			name : "Chosen Quarry",
 			source : ["BMC", 34],
 			minlevel : 3,
-			description : "\n   " + "you and your companion can single out a creature as your prey Whenever your companion gains ferocity at the start of your turn and doesn’t enter a rampage, you can spend 4 ferocity to mark a creature within 90 feet of you (no action required) That creature becomes your quarry for 1 minute, or until you use this feature to mark another target as your quarry Whenever you or your companion hit your quarry with a weapon attack or deal damage to them with a ferocity action, the quarry takes an extra 1d6 damage"
+			description : desc([
+				"You and your companion can single out a creature as your prey. Whenever your companion gains ferocity at the start of your turn and doesn’t enter a rampage, you can spend 4 ferocity to mark a creature within 90 feet of you (no action required). That creature becomes your quarry for 1 minute, or until you use this feature to mark another target as your quarry. Whenever you or your companion hit your quarry with a weapon attack or deal damage to them with a ferocity action, the quarry takes an extra 1d6 damage."
+			])
 		},
 		"subclassfeature3.1" : {
 			name : "Hunter’s Instincts",
 			source : ["BMC", 34],
 			minlevel : 3,
-			description : "\n   " + "You gain proficiency and expertise in the Survival skill if you do not already have it, and you can use Survival instead of Insight when you make a Wisdom check to read a creature’s intentions or discern if a creature is lying",
-			skillstxt : "Survival proficiency and expertise",
+			description : desc([
+				"You gain proficiency and expertise in the Survival skill if you do not already have it, and you can use Survival instead of Insight when you make a Wisdom check to read a creature’s intentions or discern if a creature is lying"
+			]),
+			skillstxt : "You gain Survival proficiency and expertise",
 			skills : ["Survival", "full"]
 		},
 		"subclassfeature7" : {
 			name : "Primal Warding",
 			source : ["BMC", 34],
 			minlevel : 7,
-			description : "\n" + "As an action, you trap a 10-foot-square area of ground centered on a point you can see within 30 feet of you, with the trap lasting for 8 hours or until it is triggered When you set the trap, you can designate any number of specifc creatures that are unafected by it Finding the trap requires a successful Intelligence (Investigation) check against your exploit save DC. A creature that walks into the trap’s area triggers the trap and must make a Constitution saving throw against your exploit save DC On a failure, the creature takes 4d8 force damage and is blinded for 1 minute On a success, the creature takes half as much damage and isn’t blinded A creature blinded by the trap can repeat the saving throw at the end of each of their turns, ending the effect on themself on a success. A mental alarm alerts you with a ping in your mind if you are within 1 mile of the trap when it is triggered This ping awakens you if you are sleeping If you set more than one trap, you know which one was triggered You can use this feature to set a number of traps equal to your Wisdom modifer (minimum one) You regain all expended uses when you finish a long rest",
+			description : desc([
+				"As an action, you trap a 10-foot-square area of ground centered on a point you can see within 30 feet of you, with the trap lasting for 8 hours or until it is triggered.",
+				"When you set the trap, you can designate any number of specifc creatures that are unaffected by it.",
+				"Finding the trap requires a successful Intelligence (Investigation) check against your exploit save DC. A creature that walks into the trap’s area triggers the trap and must make a Constitution saving throw against your exploit save DC.",
+				"On a failure, the creature takes 4d8 force damage and is blinded for 1 minute. On a success, the creature takes half as much damage and isn’t blinded.",
+				"A creature blinded by the trap can repeat the saving throw at the end of each of their turns, ending the effect on themself on a success.",
+				"A mental alarm alerts you with a ping in your mind if you are within 1 mile of the trap when it is triggered This ping awakens you if you are sleeping.",
+				"If you set more than one trap, you know which one was triggered. You can use this feature to set a number of traps equal to your Wisdom modifer (minimum one). You regain all expended uses when you finish a long rest.",
+			]),
 			action : ["action", ""],
 			usages : "Wisdom modifier per ",
 			usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
@@ -1819,13 +1888,18 @@ AddSubClass("beastheart", "hunter", {
 			name : "Synchronized Stealth",
 			source : ["BMC", 34],
 			minlevel : 11,
-			description : "\n" + "When either you or your companion takes the Hide action, the other can take the Hide action as a reaction if they are able to hide Additionally, when you take the Hide action within 5 feet of your companion, you have advantage on the Dexterity (Stealth) check made as part of the action"
+			description : desc([
+				"When either you or your companion takes the Hide action, the other can take the Hide action as a reaction if they are able to hide Additionally, when you take the Hide action within 5 feet of your companion, you have advantage on the Dexterity (Stealth) check made as part of the action"
+			]),
+			action : ["reaction", ""],
 		},
 		"subclassfeature15" : {
 			name : "Unseen Hunters",
 			source : ["BMC", 34],
 			minlevel : 15,
-			description : "\n" + "You can use an action to make you and your companion invisible for 10 minutes. While invisible, neither of you can be tracked by nonmagical means unless you or your companion chooses to leave a trail. Either of you can end the invisibility on yourself as a bonus action. Once you use this feature, you can use it again when you finish a long rest",
+			description : desc([
+				"You can use an action to make you and your companion invisible for 10 minutes. While invisible, neither of you can be tracked by nonmagical means unless you or your companion chooses to leave a trail. Either of you can end the invisibility on yourself as a bonus action. Once you use this feature, you can use it again when you finish a long rest."
+			]),
 			action : ["action", ""],
 			usages : 1,
 			recovery : "long rest"
@@ -1835,28 +1909,38 @@ AddSubClass("beastheart", "hunter", {
 
 AddSubClass("beastheart", "infernal", {
 	regExpSearch : /infernal/i,
-	subname : "Infernal  Bond",
+	subname : "Infernal Bond",
 	source : ["BMC", 36],
 	features : {
 		"subclassfeature3" : {
 			name : "Devil’s Understanding",
 			source : ["BMC", 36],
 			minlevel : 3,
-			description : "\n   " + "you can speak, write, and understand Infernal. Additionally, you gain proficiency in the Arcana or Religion skill (your choice) if you do not already have proficiency in those skills",
+			description : desc([
+				"You can speak, write, and understand Infernal. Additionally, you gain proficiency in the Arcana or Religion skill (your choice) if you do not already have proficiency in those skills."
+			]),
 			languageProfs : ["Infernal"],
-			skillstxt : "Choose Arcana or Religion. You gain proficiency."
+			skillstxt : "You gain proficiency in either Arcana or Religion."
 		},
 		"subclassfeature3.1" : {
 			name : "Infernal Exploits",
 			source : ["BMC", 36],
 			minlevel : 3,
-			description : "\n   " + "you gain one infernal exploit of your choice, which functions in the same manner as your primal exploits and uses your exploit save DC as applicable The exploit you choose must be one available at 3rd level. You gain one additional infernal exploit at 11th level Whenever you gain a level in this class, you can choose one of the infernal exploits you know and replace it with another infernal exploit, for which you must have the appropriate beastheart level TODO"
+			description : desc([
+				"You gain one infernal exploit of your choice, which functions in the same manner as your primal exploits and uses your exploit save DC as applicable. The exploit you choose must be one available at 3rd level. You gain one additional infernal exploit at 11th level. Whenever you gain a level in this class, you can choose one of the infernal exploits you know and replace it with another infernal exploit, for which you must have the appropriate beastheart level"
+			]),
+			//TODO
 		},
 		"subclassfeature7" : {
 			name : "Hell’s Charmer",
 			source : ["BMC", 38],
 			minlevel : 7,
-			description : "\n" + "your companion can harness the supernatural charm of devils to work enchantment magic on other creatures As an action, choose one creature that can see you and your companion within 30 feet of you. That creature must make a Wisdom saving throw, doing so with advantage if you or your allies are fighting them On a success, the creature knows you tried to charm them and becomes hostile toward you and your companion On a failure, the creature is charmed by you and your companion for 10 minutes, or until you or your allies do anything physically, mentally, or emotionally harmful to the creature The charmed creature is friendly to you When this effect ends, a charmed creature doesn’t remember what happened during the time they were charmed. You can use this feature a number of times equal to your Wisdom modifer (minimum once) You regain all uses when you fnish a long rest",
+			description : desc([
+				"As an action, choose one creature that can see you and your companion within 30 feet of you. That creature must make a Wisdom saving throw, doing so with advantage if you or your allies are fighting them.",
+				"On a success, the creature knows you tried to charm them and becomes hostile toward you and your companion.",
+				"On a failure, the creature is charmed by you and your companion for 10 minutes, or until you or your allies do anything physically, mentally, or emotionally harmful to the creature.",
+				"The charmed creature is friendly to you When this effect ends, a charmed creature doesn’t remember what happened during the time they were charmed. You can use this feature a number of times equal to your Wisdom modifer (minimum once) You regain all uses when you finish a long rest",
+			]),
 			action : ["action", ""],
 			usages : "Wisdom modifier per ",
 			usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
@@ -1866,14 +1950,139 @@ AddSubClass("beastheart", "infernal", {
 			name : "Fiendish Traits",
 			source : ["BMC", 38],
 			minlevel : 11,
-			description : "\n" + "your companion’s connection to Hell causes them to become more fendish. Choose one trait for your companion TODO"
+			description : desc([
+				"your companion’s connection to Hell causes them to become more fendish. Choose one trait for your companion."
+			]),
+			//TODO
 		},
 		"subclassfeature15" : {
 			name : "Fiendish Form",
 			source : ["BMC", 38],
 			minlevel : 15,
-			description : "\n" + "your companion can become a scale-covered child of Hell As a bonus action, you can spend 6 ferocity to transform your companion into a fendish form for 1 minute While in this form, your companion undergoes the following changes: 1. They are a fend 2. They have resistance to bludgeoning, piercing, and slashing damage 3. They have advantage on saving throws against spells and other magical effects",
+			description : desc([
+				"As a bonus action, you can spend 6 ferocity to transform your companion into a fendish form for 1 minute. While in this form, your companion undergoes the following changes:",
+				"\u2022 They are a fiend",
+				"\u2022 They have resistance to bludgeoning, piercing, and slashing damage",
+				"\u2022 They have advantage on saving throws against spells and other magical effects",
+			]),
 			action : ["bonus action", ""],
+		}
+	}
+});
+
+AddSubClass("beastheart", "primordial", {
+	regExpSearch : /primordial/i,
+	subname : "Primordial Bond",
+	source : ["BMC", 39],
+	features : {
+		"subclassfeature3" : {
+			name : "Nature Exploits",
+			source : ["BMC", 39],
+			minlevel : 3,
+			description : desc([
+				"you gain one nature exploit of your choice, which functions in the same manner as your primal exploits and uses your exploit save DC as applicable. The exploit you choose must be one available at 3rd level. You gain one additional nature exploit at 11th level. Whenever you gain a level in this class, you can choose one of the nature exploits you know and replace it with another nature exploit, for which you must have the appropriate beastheart level."
+			])
+			//TODO
+		},
+		"subclassfeature3.1" : {
+			name : "Primal Understanding",
+			source : ["BMC", 41],
+			minlevel : 3,
+			description : desc([
+				"you can speak, write, and understand Primordial and Sylvan. Additionally, you gain profciency in the Nature skill if you do not already have it."
+			]),
+			languageProfs : ["Primordial", "Sylvan"],
+			skills : ["Nature"],
+			skillstxt : "You gain proficiency in Nature."
+		},
+		"subclassfeature7" : {
+			name : "Allied Earth",
+			source : ["BMC", 41],
+			minlevel : 7,
+			description : desc([
+				"Whenever your companion has at least 1 ferocity, the ground within 10 feet of them is difcult terrain for their enemies."
+			])
+		},
+		"subclassfeature11" : {
+			name : "Spirit Stampede",
+			source : ["BMC", 41],
+			minlevel : 11,
+			description : desc([
+				"When your companion enters a rampage each creature of your choice within 30 feet of your companion takes force damage equal to the companion’s ferocity."
+			])
+		},
+		"subclassfeature15" : {
+			name : "Allied Weather",
+			source : ["BMC", 41],
+			minlevel : 15,
+			description : desc([
+				"Whenever your companion has at least 1 ferocity and is hit with a melee attack by a creature within 10 feet of them, choose one of the following efects:",
+				"\u2022 The attacker must succeed on a Strength saving throw against your exploit save DC or fall prone",
+				"\u2022 The attacker must succeed on a Dexterity saving throw against your exploit save DC or take lightning damage equal to your companion’s ferocity",
+			]),
+		}
+	}
+});
+
+AddSubClass("beastheart", "protector", {
+	regExpSearch : /protector/i,
+	subname : "Protector Bond",
+	source : ["BMC", 41],
+	features : {
+		"subclassfeature3" : {
+			name : "Beast Vitality",
+			source : ["BMC", 41],
+			minlevel : 3,
+			description : desc([
+				"Your hit point maximum increases by 3, and increases by 1 again whenever you gain a level in this class."
+			]),
+			calcChanges : {
+				hp : function (totalHD) {
+					return [totalHD * 1, '\n + ' + totalHD + ' from Beast Vitality (' + (totalHD * 1) + ')', true];
+				}
+			}
+		},
+		"subclassfeature3.1" : {
+			name : "Pack Phalanx",
+			source : ["BMC", 41],
+			minlevel : 3,
+			description : desc([
+				"Whenever you and your companion are not incapacitated and are both within 5 feet of a creature, that creature has disadvantage on attack rolls against any target that is not you or your companion."
+			])
+		},
+		"subclassfeature7" : {
+			name : "Thickened Hide",
+			source : ["BMC", 41],
+			minlevel : 7,
+			description : desc([
+				"Your companion’s AC increases by 2"
+			]),
+			calcChanges : {
+				companionCallback : [function(prefix, oCrea, bAdd, sCompType) {
+					var compHP = prefix + 'Comp.Use.AC';
+					Value(compHP, 123);
+							
+				}, "TODO"],
+			}
+		},
+		"subclassfeature11" : {
+			name : "Sentinel Companion",
+			source : ["BMC", 41],
+			minlevel : 11,
+			description : desc([
+				"When a creature within 5 feet of your companion makes an attack against a creature other than you or your companion, you can spend 2 ferocity to have your companion use their reaction to make a signature attack against the attacking creature"
+			]),
+			action : ["reaction", ""],
+		},
+		"subclassfeature15" : {
+			name : "Undying Protector",
+			source : ["BMC", 41],
+			minlevel : 15,
+			description : desc([
+				"If you can see your companion when you drop to 0 hit points, you can spend 2 ferocity to drop to 1 hit point instead. Each time you use this feature after the first, the ferocity cost increases by 2. When you finish a short or long rest,the ferocity cost resets to 2"
+			]),
+			//usages : 2,
+			//recovery : "short rest"
 		}
 	}
 });
