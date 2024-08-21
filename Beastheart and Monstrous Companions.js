@@ -2034,7 +2034,7 @@ AddSubClass("beastheart", "primordial", {
 				action : ["action", ""],
 				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
 			},
-			"lightning eruption" : 
+			"lightning eruption" : {
 				name : "Lightning Eruption",
 				source : ["BMC", 39],
 				submenu : "[beastheart level  11+]",
