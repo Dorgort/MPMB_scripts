@@ -1746,7 +1746,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 2,
 			description : desc([
-				"Whenever your companion uses a ferocity action that requires a crea. to make an ability check or save. your companion can use your Primal Exploit DC in place of it's DC.",
+				"Whenever your companion uses a ferocity action that requires a creature to make an ability check or save. your companion can use your Primal Exploit DC in place of it's DC.",
 			]),
 		},
 		"subclassfeature3" : {
@@ -1981,8 +1981,98 @@ AddSubClass("beastheart", "primordial", {
 			minlevel : 3,
 			description : desc([
 				"you gain one nature exploit of your choice, which functions in the same manner as your primal exploits and uses your exploit save DC as applicable. The exploit you choose must be one available at 3rd level. You gain one additional nature exploit at 11th level. Whenever you gain a level in this class, you can choose one of the nature exploits you know and replace it with another nature exploit, for which you must have the appropriate beastheart level."
-			])
-			//TODO
+			]),
+			extraname : "Nature Exploits",
+			extrachoices : ["Elemental Shield", "Freezing Strike", "Sickening Strike", "Wings When I Need Them", "Lava Geyser", "Lightning Eruption", "Plant Prison", "Stinging Swarm", "Thunderous Rebuke"],
+			extraTimes : levels.map(function (n) {
+					return n < 3 ? 0 : n >= 3 && n < 11 ? 1 : n >= 11 ? 2 : 0;
+			}),	
+			"elemental shield" : {
+				name : "Elemental Shield",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  3+]",
+				description : desc([
+					"(3 Ferocity) When a creature you can see within 30 feet of you takes acid, cold, fire, lightning, or thunder damage, you can use a reaction to give the afected creature resistance to that damage type (including against the triggering attack) until the end of their next turn."
+				]),
+				action : ["reaction", ""],
+				prereqeval : function(v) { return classes.known.beastheart.level >= 3; },
+			},
+			"freezing strike" : {
+				name : "Freezing Strike",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  3+]",
+				description : desc([
+					"(2 Ferocity) You can activate this exploit whenever you take the Attack action. The first time you hit a creature with a weapon attack this turn, the attack deals an extra 1d6 cold damage and the target’s speed is reduced by 10 feet until the start of your next turn. The extra damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+				]),
+				prereqeval : function(v) { return classes.known.beastheart.level >= 3; },
+			},
+			"sickening strike" : {
+				name : "Sickening Strike",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  3+]",
+				description : desc([
+					"(3 Ferocity) You can activate this exploit whenever you take the Attack action. The first time you hit a creature with a weapon attack this turn, the target must succeed on a Constitution saving throw or be poisoned until the start of your next turn"
+				]),
+				prereqeval : function(v) { return classes.known.beastheart.level >= 3; },
+			},
+			"wings when i need them" : {
+				name : "Wings When I Need Them",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  3+]",
+				description : desc([
+					"(5 Ferocity). At the start of your turn when your companion gains ferocity and doesn’t enter a rampage, you can manifest a spectral eagle (no action required) that lifts you or your companion (your choice) to the sky. The target gains a flying speed equal to their walking speed until the start of their next turn"
+				]),
+				prereqeval : function(v) { return classes.known.beastheart.level >= 3; },
+			},
+			"lava geyser" : {
+				name : "Lava Geyser",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  11+]",
+				description : desc([
+					"(8 Ferocity). As an action, you summon a powerful rush of lava centered on a point on the ground you can see within 30 feet of you. The lava fills a cylinder that is 10 feet tall with a 5-foot radius, and forces each creature in its area to make a Dexterity saving throw. On a failure, a creature takes 4d6 fire damage and is knocked prone. On a success, a creature takes half as much damage and isn’t knocked prone The lava then dissolves into fery mist and fades away. When you reach 17th level, the damage increases to 5d6"
+				]),
+				action : ["action", ""],
+				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
+			},
+			"lightning eruption" : 
+				name : "Lightning Eruption",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  11+]",
+				description : desc([
+					"(8 Ferocity). When you hit a creature with a weapon attack, the attack deals an extra 5d6 lightning damage and you can choose one other creature within 30 feet of the target that you can see. That creature must make a Dexterity saving throw, taking 5d6 lightning damage on a failed save, or half as much damage on a successful one. When you reach 17th level, both instances of damage increase to 6d6"
+				]),
+				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
+			},
+			"plant prison" : {
+				name : "Plant Prison",
+				source : ["BMC", 39],
+				submenu : "[beastheart level  11+]",
+				description : desc([
+					"(5 Ferocity). As an action, choose a creature you can see within 30 feet of you. Thorny vines erupt from the ground beneath the target, which must make a Dexterity saving throw. On a failure, the target takes 4d6 piercing damage and is restrained until the start of your next turn. On a success, the target takes half as much damage and isn’t restrained. When you reach 17th level, the damage increases to 5d6"
+				]),
+				action : ["action", ""],
+				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
+			},
+			"stinging swarm" : {
+				name : "Stinging Swarm",
+				source : ["BMC", 41],
+				submenu : "[beastheart level  11+]",
+				description : desc([
+					"(6 Ferocity). As an action, you conjure a swarm of stinging insects in a line that is 5 feet wide and 30 feet long. Each creature in the line except your companion must make a Constitution saving throw, taking 4d6 piercing damage on a failed save, or half as much damage on a successful one. The insects then dissolve to shadow and fade away. When you reach 17th level, the damage increases to 5d6"
+				]),
+				action : ["action", ""],
+				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
+			},
+			"thunderous rebuke" : {
+				name : "Thunderous Rebuke",
+				source : ["BMC", 41],
+				submenu : "[beastheart level  11+]",
+				description : desc([
+					"(6 Ferocity). When you or your companion is hit with a melee attack by a creature within 5 feet of that target, you can use your reaction to force the attacker to make a Constitution saving throw. On a failure, the attacker takes 3d6 thunder damage and is pushed 10 feet away from the target. On a success, the attacker takes half as much damage and isn’t pushed. When you reach 17th level, the damage increases to 4d6"
+				]),
+				action : ["reaction", ""],
+				prereqeval : function(v) { return classes.known.beastheart.level >= 11; },
+			},
 		},
 		"subclassfeature3.1" : {
 			name : "Primal Understanding",
@@ -2057,12 +2147,9 @@ AddSubClass("beastheart", "protector", {
 			description : desc([
 				"Your companion’s AC increases by 2"
 			]),
-			calcChanges : {
-				companionCallback : [function(prefix, oCrea, bAdd, sCompType) {
-					var compHP = prefix + 'Comp.Use.AC';
-					Value(compHP, 123);
-							
-				}, "TODO"],
+			//TODO
+			eval : function(prefix, lvl) {
+				AddToModFld(prefix + "Comp.Use.AC", "10", true, "Animal Companion", "An beast conclave's animal companion adds its proficiency bonus (Prof) to its AC.");
 			}
 		},
 		"subclassfeature11" : {
@@ -2081,8 +2168,6 @@ AddSubClass("beastheart", "protector", {
 			description : desc([
 				"If you can see your companion when you drop to 0 hit points, you can spend 2 ferocity to drop to 1 hit point instead. Each time you use this feature after the first, the ferocity cost increases by 2. When you finish a short or long rest,the ferocity cost resets to 2"
 			]),
-			//usages : 2,
-			//recovery : "short rest"
 		}
 	}
 });
