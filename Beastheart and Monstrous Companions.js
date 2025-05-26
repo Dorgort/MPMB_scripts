@@ -123,17 +123,48 @@ ClassList["beastheart"] = {
 					]),
 					action : "reaction",
 				}],
-				header : "Monstrosity",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
+				traits : [{
+					// name : "Thickened Hide",
+					minlevel : 7,
+					// description: desc([
+					// 	"Your companion's AC increases by 2"
+					// ]),
+					eval: function(prefix, lvl) {
+						if(!classes.known.beastheart || !(/protector/i).test(classes.known.beastheart.subclass)) return;
+						var fldName = prefix + "Comp.Use.AC";
+						var newAC = What(prefix + "Comp.Use.AC") + "+2";
+						Value(fldName, newAC);
+
+						var traitBox = prefix + "Comp.Use.Traits";
+						var existingTraits = What(traitBox); // Get current value
+						// AddTooltip(prefix + "Comp.Use.Traits", "test", ""); // this adds a tooltip
+						var feature = "\u25C6 Thickened Hide" + desc(["Your companion's AC increases by 2"])
+						Value(traitBox, existingTraits + feature);
+
 					},
+					removeeval : function(prefix, lvl) {
+						var fldName = prefix + "Comp.Use.AC";
+						var newAC = What(prefix + "Comp.Use.AC")+ "-2";
+						Value(fldName, newAC);
+
+						var traitBox = prefix + "Comp.Use.Traits";
+						var existingTraits = What(traitBox);
+						var featureToRemove = new RegExp("\u25C6 Thickened Hide[\\s\\S]*?(?=\u25C6|$)");
+						var updatedTraits = existingTraits.replace(featureToRemove, "");
+						Value(traitBox, updatedTraits);
+					}
+				}],
+				header : "Monstrosity",
+				calcChanges : {
+					hp : function (totalHD, HDobj, prefix) {
+						if (!classes.known.beastheart) return;
+						var beaLvl = classes.known.beastheart.level;
+						HDobj.alt.push(7 + beaLvl * 7);
+						HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level" + JSON.stringify(HDobj));
+					},
+					setAltHp : true,
+					hpForceRecalc : true
+				},
 				}],
 			},
 			"blood hawk" : {
@@ -1757,7 +1788,7 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 6,
 			description : desc([
-				"TODO",
+				"At 6th level, you no longer need a bonus action to command your companion. As long as you aren't incapacitated, verbal or physical signs suffice. Additionally, when your companion is enraged, you choose its movement and attacks on creatures, provided it can see or hear you and you're not incapacitated.",
 			]),
 		},
 		"rejuvenating ferocity" : {
@@ -1765,23 +1796,28 @@ ClassList["beastheart"] = {
 			source : ["BMC", 30],
 			minlevel : 6,
 			description : desc([
-				"TODO",
+				"At 6th level, you can use a bonus action to spend any amount of your companion's ferocity to heal it by the same amount. You can use this feature a number of times equal to your Wisdom modifier (minimum 1), and regain all uses on a long rest.",
 			]),
+			action : ["bonus action", ""],
+			usages : "Wisdom modifier per ",
+			usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
+			recovery : "long rest"
 		},
 		"primal strike" : {
 			name : "Primal Strike",
 			source : ["BMC", 31],
 			minlevel : 8,
 			description : desc([
-				"TODO",
+				"At 8th level, once per turn, you can deal an additional 1d8 (TYPE OF DAMAGE) damage with a weapon attack. Each time you level up, you can change the damage type.",
 			]),
+			// TODO ADD TO ATTACKS AND LVL 14 UPDATE
 		},
 		"mystic connection" : {
 			name : "Mystic Connection",
 			source : ["BMC", 31],
 			minlevel : 9,
 			description : desc([
-				"TODO",
+				"TODO TLDR",
 			]),
 		},
 		"loyal to the end" : {
@@ -1789,31 +1825,34 @@ ClassList["beastheart"] = {
 			source : ["BMC", 32],
 			minlevel : 13,
 			description : desc([
-				"TODO",
+				"At 13th level, you are immune to being charmed or frightened.",
 			]),
+			// TODO ADD EFFECT AND ADD TO COMPANION
 		},
 		"keen senses" : {
 			name : "Keen Senses",
 			source : ["BMC", 32],
 			minlevel : 14,
 			description : desc([
-				"TODO",
+				"At 14th level, you gain advantage on Wisdom (Perception) checks based on hearing, sight, or smell. Additionally, you can take the Search action as a bonus action.",
 			]),
+			// TODO ADD EFFECT
 		},
 		"summon the wilds" : {
 			name : "Summon the Wilds",
 			source : ["BMC", 32],
 			minlevel : 18,
 			description : desc([
-				"TODO",
+				"At 18th level, you can summon a distracting swarm of creatures (birds, fish, insects, rodents, etc.) in a 30-foot cube within 120 feet that you can see as an action. The swarm lasts 1 minute and can be moved up to 30 feet as a bonus action each turn. Creatures you choose starting their turn in the swarm must succeed on a Wisdom save against your exploit save DC or suffer disadvantage on ability checks, attack rolls, saving throws, and -5 to passive Wisdom (Perception) until the start of their next turn. You can use this feature once per short or long rest.",
 			]),
+			// TODO ADD EFFECT
 		},
 		"unbreakable friendship" : {
 			name : "Unbreakable Friendship",
 			source : ["BMC", 32],
 			minlevel : 20,
 			description : desc([
-				"TODO",
+				"At 20th level, while you have at least 1 hit point and your companion can see or hear you, you gain these benefits: You automatically succeed on Wisdom (Animal Handling) checks to prevent your companion's rampage (you may choose to forgo the check to allow it). If your companion is reduced to 0 hit points but not killed outright, it drops to 1 hit point instead. Your companion gains 1d10 ferocity whenever you roll initiative.",
 			]),
 		},
 	},
@@ -2177,7 +2216,6 @@ AddSubClass("beastheart", "protector", {
 			description : desc([
 				"Your companion's AC increases by 2"
 			]),
-			// TODO
 		},
 		"subclassfeature11" : {
 			name : "Sentinel Companion",
@@ -2198,3 +2236,161 @@ AddSubClass("beastheart", "protector", {
 		}
 	}
 });
+
+
+CompanionList ["beastheart companion"] = {
+	name: "Beastheart Companion",
+	nameMenu: "Companion (Beastheart class feature)",
+	source: ["BMC", 8],
+	attributesAdd : {
+	header : "Companion",},
+	}
+
+
+CreatureList["basilisk"] = {
+	name : "Basilisk",
+	source : ["BMC", 9],
+	size : 3,
+	type : "Monstrosity",
+	alignment : "Unaligned",
+	companion : "beastheart companion",
+	companionApply : "beastheart companion",
+	ac : "15+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+	speed : "30 ft",
+	scores : [16, 10, 15, 5, 12, 10],
+	saves : ["", "", "Prof", "", "", ""],
+	skills : {
+		"Athletics" : 5,
+		"Survival" : 3,
+	},
+	senses : "Darkvision 60 ft",
+	proficiencyBonus : 2,
+	proficiencyBonusLinked : true,
+	attacksAction : 1,
+	attacks : [{
+		name : "Bite (Signature Attack)",
+		ability : 1,
+		damage : [1, 6, "Piercing"],
+		range : "Melee (5 ft)",
+		description : "",
+		modifiers : ["", "Prof"],
+		abilitytodamage : false,
+	}],
+	features : [{
+		name : "1st Level: Poison Spittle (2 Ferocity)",
+		description : desc([
+			"The basilisk makes a signature attack. On a hit, the attack deals PB extra damage, and a creature the basilisk chooses within 5 feet of it, other than the target, takes PB poison damage.",
+		]),
+	}, {
+		name : "3rd Level: Poison Gaze (5 Ferocity)",
+		description : desc([
+			"The basilisk chooses up to three creatures it can see within 15 feet. Each creature must succeed on a DC 10 + PB Con saving throw or become poisoned until the start of the basilisk's next turn.",
+		]),
+		minlevel : 3
+	}, {
+		name : "5th Level: Lesser Petrifying Gaze (8 Ferocity)",
+		description : desc([
+			"The basilisk targets one creature it can see within 30 feet. The target must make a DC 10 + PB Con saving throw. On a failure, it begins to turn to stone and is restrained. It repeats the saving throw at the end of its next turn. On a success, the effect ends. On a failure, the creature is petrified for 1 hour or until cured by the lesser restoration spell or similar magic. (This petrification is weaker than typical, allowing weaker spells to cure it.)",
+		]),
+		minlevel : 5
+	}, {
+		name : "Heavy Glare (Reaction)",
+		description : desc([
+			"When the basilisk's caregiver hits a creature that can see the basilisk, it can force that creature to make a DC 10 + PB Con saving throw. On a failure, the target's speed is reduced by 10 feet and it can't make opportunity attacks until the start of its next turn.",
+		]),
+		action : "reaction",
+	}],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+// CreatureList["blood hawk"] = {
+// 	name : "Blood Hawk",
+// 	source : ["BMC", 10],
+// 	size : 4,
+// 	type : "Beast",
+// 	alignment : "Unaligned",
+// 	ac : "13+Prof",
+// 	hp : 6,
+// 	hd : [2, 8],
+// 	hdLinked : ["beastheart"],
+// 	speed : ["10 ft", "60 ft Fly"],
+// 	scores : [8, 16, 12, 5, 14, 10],
+// 	saves : ["", "Prof", "", "", "Prof", ""],
+// 	skills : {
+// 		"Perception" : 4,
+// 	},
+// 	senses : "The hawk has advantage on Wisdom (Perception) checks that rely on sight.",
+// 	proficiencyBonus : 2,
+// 	proficiencyBonusLinked : true,
+// 	attacksAction : 1,
+// 	attacks : [{
+// 		name : "Beak (Signature Attack)",
+// 		ability : 2,
+// 		damage : [1, 6, "Piercing"],
+// 		range : "Melee (5 ft)",
+// 		description : "",
+// 		modifiers : ["", "Prof"],
+// 		abilitytodamage : false,
+// 	}],
+// 	features : [{
+// 		name : "1st Level: Distracting Attack (2 Ferocity)",
+// 		description : desc([
+// 			"The hawk makes a signature attack. On a hit, the attack deals its normal effects,",
+// 			"and the next attack made against the target before the start of",
+// 			"the hawk's next turn has advantage.",
+// 		]),
+// 	}, {
+// 		name : "3rd Level: Swooping Attack (5 Ferocity)",
+// 		description : desc([
+// 			"The hawk moves up to their speed without provoking opportunity attacks. During",
+// 			"or at the end of this move, they can make a signature attack",
+// 			"against one target. On a hit, the attack deals its normal effects,",
+// 			"and the target must succeed on a DC 10 plus PB Strength saving",
+// 			"throw or drop one item they are holding.",
+// 		]),
+// 		minlevel : 3,
+// 	}, {
+// 		name : "5th Level: Storm of Talons (8 Ferocity)",
+// 		description : desc([
+// 			"The hawk moves up to their speed without provoking opportunity attacks, then",
+// 			"can target one creature within 5 feet of them, which must make",
+// 			"a DC 10 plus PB Dexterity saving throw. On a failure, the target",
+// 			"takes PBd10 slashing damage and is blinded until the end of",
+// 			"the hawk's next turn. On a success, the target takes half as much",
+// 			"damage and is not blinded.",
+// 		]),
+// 		minlevel : 5,
+// 	}, {
+// 		name : "Swoop In (1/Long Rest) (Reaction)",
+// 		description : desc([
+// 			"When the hawk is within 30 feet of their caregiver and the caregiver is hit with an attack, the hawk",
+// 			"can move up to their speed without provoking opportunity attacks. If the hawk ends this movement within 5 feet of the",
+// 			"caregiver, the hawk is hit by the attack instead, and the attack",
+// 			"deals half as much damage.",
+// 		]),
+// 		action : "reaction",
+// 	}],
+// 	calcChanges : {
+// 		hp : function (totalHD, HDobj, prefix) {
+// 			if (!classes.known.beastheart) return;
+// 			var beaLvl = classes.known.beastheart.level;
+// 			HDobj.alt.push(6 + beaLvl * 6);
+// 			HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from your beastheart level");
+// 		},
+// 		setAltHp : true,
+// 		hpForceRecalc : true,
+// 	},
+// }
