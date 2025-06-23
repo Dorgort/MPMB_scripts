@@ -58,1474 +58,8 @@ ClassList["beastheart"] = {
 			source : ["BMC", 27],
 			minlevel : 1,
 			description : desc([
-				"You gain a companion creature (Use 'Choose Feature' Button on page 2 to select it). If your companion is injured or dies, you may spend 1 minute and gain 1 level of exhaustion to heal it to its maximum hit points, or resurrect it to its maximum hit points. If no body remains, it appears within 5 feet of you.",
+				"You gain a companion creature (Select the Companion on your Companion sheet). If your companion is injured or dies, you may spend 1 minute and gain 1 level of exhaustion to heal it to its maximum hit points, or resurrect it to its maximum hit points. If no body remains, it appears within 5 feet of you.",
 			]),
-			choices : ["Basilisk", "Blood Hawk", "Bulette", "Deinonychus", "Dragon Wyrmling", "Earth Elemental", "Gelatinous Cube", "Giant Spider", "Giant Toad", "Giant Weasel", "Hell Hound", "Mimic", "Owlbear", "Sporeling", "Worg"],
-			"basilisk" : {
-				name : "Basilisk",
-				source : ["BMC", 9],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Basilisk Companion",
-				]),
-				creaturesAdd : [["Basilisk"]],
-				creatureOptions : [{
-				name : "Basilisk",
-				source : [["BMC", 9]],
-				size : 3,
-				type : "Monstrosity",
-				alignment : "Unaligned",
-				ac : "15+Prof",
-				hp : 7,
-				hd : [1, 8],
-				hdLinked : ["beastheart"],
-				speed : "30 ft",
-				scores : [16, 10, 15, 5, 12, 10],
-				saves : ["", "", "Prof", "", "", ""],
-				skills : {
-					"Athletics" : 5,
-					"Survival" : 3,
-				},
-				senses : "Darkvision 60 ft",
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Poison Spittle (2 Ferocity)",
-					description : desc([
-						"The basilisk makes a signature attack. On a hit, the attack deals PB extra damage, and a creature the basilisk chooses within 5 feet of it, other than the target, takes PB poison damage.",
-					]),
-				}, {
-					name : "3rd Level: Poison Gaze (5 Ferocity)",
-					description : desc([
-						"The basilisk chooses up to three creatures it can see within 15 feet. Each creature must succeed on a DC 10 + PB Con saving throw or become poisoned until the start of the basilisk's next turn.",
-					]),
-					minlevel : 3
-				}, {
-					name : "5th Level: Lesser Petrifying Gaze (8 Ferocity)",
-					description : desc([
-						"The basilisk targets one creature it can see within 30 feet. The target must make a DC 10 + PB Con saving throw. On a failure, it begins to turn to stone and is restrained. It repeats the saving throw at the end of its next turn. On a success, the effect ends. On a failure, the creature is petrified for 1 hour or until cured by the lesser restoration spell or similar magic. (This petrification is weaker than typical, allowing weaker spells to cure it.)",
-					]),
-					minlevel : 5
-				}, {
-					name : "Heavy Glare (Reaction)",
-					description : desc([
-						"When the basilisk's caregiver hits a creature that can see the basilisk, it can force that creature to make a DC 10 + PB Con saving throw. On a failure, the target's speed is reduced by 10 feet and it can't make opportunity attacks until the start of its next turn.",
-					]),
-					action : "reaction",
-				}],
-				traits : [{
-					// name : "Thickened Hide",
-					minlevel : 7,
-					// description: desc([
-					// 	"Your companion's AC increases by 2"
-					// ]),
-					eval: function(prefix, lvl) {
-						if(!classes.known.beastheart || !(/protector/i).test(classes.known.beastheart.subclass)) return;
-						var fldName = prefix + "Comp.Use.AC";
-						var newAC = What(prefix + "Comp.Use.AC") + "+2";
-						Value(fldName, newAC);
-
-						var traitBox = prefix + "Comp.Use.Traits";
-						var existingTraits = What(traitBox); // Get current value
-						// AddTooltip(prefix + "Comp.Use.Traits", "test", ""); // this adds a tooltip
-						var feature = "\u25C6 Thickened Hide" + desc(["Your companion's AC increases by 2"])
-						Value(traitBox, existingTraits + feature);
-
-					},
-					removeeval : function(prefix, lvl) {
-						var fldName = prefix + "Comp.Use.AC";
-						var newAC = What(prefix + "Comp.Use.AC")+ "-2";
-						Value(fldName, newAC);
-
-						var traitBox = prefix + "Comp.Use.Traits";
-						var existingTraits = What(traitBox);
-						var featureToRemove = new RegExp("\u25C6 Thickened Hide[\\s\\S]*?(?=\u25C6|$)");
-						var updatedTraits = existingTraits.replace(featureToRemove, "");
-						Value(traitBox, updatedTraits);
-					}
-				}],
-				header : "Monstrosity",
-				calcChanges : {
-					hp : function (totalHD, HDobj, prefix) {
-						if (!classes.known.beastheart) return;
-						var beaLvl = classes.known.beastheart.level;
-						HDobj.alt.push(7 + beaLvl * 7);
-						HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level" + JSON.stringify(HDobj));
-					},
-					setAltHp : true,
-					hpForceRecalc : true
-				},
-				}],
-			},
-			"blood hawk" : {
-				name : "Blood Hawk",
-				source : ["BMC", 10],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Blood Hawk Companion",
-				]),
-				creaturesAdd : [["Blood Hawk"]],
-				creatureOptions : [{
-				name : "Blood Hawk",
-				source : [["BMC", 10]],
-				size : 4,
-				type : "Beast",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 6,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["10 ft", "60 ft Fly"],
-				scores : [8, 16, 12, 5, 14, 10],
-				saves : ["", "Prof", "", "", "Prof", ""],
-				skills : {
-					"Perception" : 4,
-				},
-				senses : ["The hawk has advantage on Wisdom (Perception) checks that rely on sight."],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Beak (Signature Attack)",
-					ability : 2,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Distracting Attack (2 Ferocity)",
-					description : desc([
-						"The hawk makes a",
-						"signature attack. On a hit, the attack deals its normal effects,",
-						"and the next attack made against the target before the start of",
-						"the hawk's next turn has advantage.",
-					]),
-				}, {
-					name : "3rd Level: Swooping Attack (5 Ferocity)",
-					description : desc([
-						"The hawk moves up",
-						"to their speed without provoking opportunity attacks. During",
-						"or at the end of this move, they can make a signature attack",
-						"against one target. On a hit, the attack deals its normal effects,",
-						"and the target must succeed on a DC 10 plus PB Strength saving",
-						"throw or drop one item they are holding.",
-					]),
-				}, {
-					name : "5th Level: Storm of Talons (8 Ferocity)",
-					description : desc([
-						"The hawk moves up",
-						"to their speed without provoking opportunity attacks, then",
-						"can target one creature within 5 feet of them, which must make",
-						"a DC 10 plus PB Dexterity saving throw. On a failure, the target",
-						"takes PBd10 slashing damage and is blinded until the end of",
-						"the hawk's next turn. On a success, the target takes half as much",
-						"damage and is not blinded.",
-					]),
-				}, {
-					name : "Swoop In (1/Long Rest) (Reaction)",
-					description : desc([
-						"When the hawk is within 30 feet of",
-						"their caregiver and the caregiver is hit with an attack, the hawk",
-						"can move up to their speed without provoking opportunity",
-						"attacks. If the hawk ends this movement within 5 feet of the",
-						"caregiver, the hawk is hit by the attack instead, and the attack",
-						"deals half as much damage.",
-					]),
-					action : "reaction",
-				}],
-				header : "Beast",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(6 + beaLvl * 6);
-							HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"bulette" : {
-				name : "Bulette",
-				source : ["BMC", 11],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Bulette Companion",
-				]),
-				creaturesAdd : [["Bulette"]],
-				creatureOptions : [{
-				name : "Bulette",
-				source : [["BMC", 11]],
-				size : 2,
-				type : "Monstrosity",
-				alignment : "Unaligned",
-				ac : "15+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft", "30 ft Burrow"],
-				scores : [16, 10, 15, 5, 8, 8],
-				saves : ["", "", "Prof", "", "", ""],
-				skills : {
-					"Perception" : 1,
-				},
-				senses : ["Darkvision 60 ft", "Tremorsense 30 ft"],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Violent Attack (2 Ferocity)",
-					description : desc([
-						"The bulette makes a",
-						"signature attack. On a hit, the attack deals an extra PB damage,",
-						"and the bulette can move the target 5 feet in any direction.",
-					]),
-				}, {
-					name : "3rd Level: Burrowing Trip (5 Ferocity)",
-					description : desc([
-						"The bulette moves up",
-						"to half their burrowing speed without provoking opportunity",
-						"attacks. Each creature standing on the ground that the bulette",
-						"moves under must succeed on a DC 10 plus PB Dexterity saving throw or fall prone.",
-					]),
-				}, {
-					name : "5th Level: Deadly Leap (8 Ferocity)",
-					description : desc([
-						"The bulette leaps up to",
-						"30 feet, and if they land in a space that contains one or more",
-						"creatures, each of those creatures must make a DC 10 plus",
-						"PB Strength saving throw. On a failure, a creature takes PBd6",
-						"bludgeoning damage and is knocked prone. On a success, the",
-						"creature takes half as much damage, isn't knocked prone, and",
-						"is pushed 5 feet out of the bulette's space into an unoccupied",
-						"space of the creature's choice. If no unoccupied space",
-						"is available, the creature instead is knocked prone in",
-						"the bulette's space.",
-					]),
-				}],
-				traits : [{
-					name : "Plated Protection",
-					description : desc([
-						"The bulette's caregiver can ride on he bulette while the bulette burrows",
-					]),
-				}],
-				header : "Monstrosity",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"deinonychus" : {
-				name : "Deinonychus",
-				source : ["BMC", 12],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Deinonychus Companion",
-				]),
-				creaturesAdd : [["Deinonychus"]],
-				creatureOptions : [{
-				name : "Deinonychus",
-				source : [["BMC", 12]],
-				size : 3,
-				type : "Beast",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : "40 ft",
-				scores : [15, 16, 14, 5, 12, 8],
-				saves : ["Prof", "Prof", "", "", "", ""],
-				skills : {
-					"Perception" : 3,
-					"Stealth" : 5,
-				},
-				senses : "",
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 2,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Overwhelming Attack (2 Ferocity)",
-					description : desc([
-						"The deinonychus makes a signature attack. On a hit, the attack deals an",
-						"extra PB damage, and the target can't take reactions until the",
-						"start of the deinonychus's next turn.",
-					]),
-				}, {
-					name : "3rd Level: Clever Girl (5 Ferocity)",
-					description : desc([
-						"The deinonychus can take",
-						"the Hide action then make a signature attack, or can make a",
-						"signature attack then take the Hide action. If the deinonychus",
-						"hits with the signature attack, they also knock the target prone.",
-						"The deinonychus can move between their Hide action and the",
-						"attack, or vice versa, even if such movement would normally",
-						"negate an attempt to hide.",
-					]),
-				}, {
-					name : "5th Level: Keep them Down (8 Ferocity)",
-					description : desc([
-						"The deinonychus",
-						"leaps at another creature within 5 feet of them, which must",
-						"make a DC 10 plus PB Dexterity saving throw. On a failure,",
-						"the target takes PBd12 slashing damage and is knocked prone",
-						"and grappled (escape DC 10 plus PB). On a success, the target",
-						"takes half as much damage and is not knocked prone or grappled.",
-						"A creature knocked prone by this feature can't stand up",
-						"until they are no longer grappled. If the deinonychus attacks or",
-						"uses Keep them Down on another target, the grapple ends.",
-					]),
-				}],
-				header : "Beast",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"dragon wyrmling" : {
-				name : "Dragon Wyrmling",
-				source : ["BMC", 13],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Dragon Wyrmling Companion",
-				]),
-				creaturesAdd : [["Dragon Wyrmling"]],
-				creatureOptions : [{
-				name : "Dragon Wyrmling",
-				source : [["BMC", 13]],
-				size : 3,
-				type : "Dragon",
-				alignment : "Unaligned",
-				ac : "15+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft", "30 ft Fly"],
-				scores : [16, 10, 15, 5, 10, 12],
-				saves : ["", "", "", "", "Prof", ""],
-				skills : {
-					"Perception" : 2,
-				},
-				senses : "",
-				damage_immunities : "see the Draconic Lineage Trait",
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Spit Breath (2 Ferocity)",
-					description : desc([
-						"the wyrmling makes a",
-						"signature attack as a ranged weapon attack, with a normal",
-						"range of 30 feet and a long range of 60 feet. On a hit, the",
-						"attack deals an extra PB damage, and all the damage dealt by",
-						"the attack is of the type associated with the wyrmling's lineage",
-						"instead of piercing damage.",
-					]),
-				}, {
-					name : "3rd Level: Frightful Presence (5 Ferocity)",
-					description : desc([
-						"Each creature of",
-						"the wyrmling's choice that is within 10 feet of the wyrmling",
-						"and aware of them must succeed on a DC 10 plus PB Wisdom",
-						"saving throw or become frightened of the wyrmling for 1",
-						"minute. A creature can repeat the saving throw at the end of",
-						"each of their turns, ending the effect on themself on a success.",
-						"If a creature's saving throw is successful or the effect ends for",
-						"them, the creature is immune to the wyrmling's Frightful Presence ",
-						"for the next 24 hours.",
-					]),
-				}, {
-					name : "5th Level: Breath Weapon (8 Ferocity).",
-					description : desc([
-						"The wyrmling exhales",
-						"elemental energy that fills an area. Creatures in that area must",
-						"make a DC 10 plus PB saving throw, taking PBd6 damage on",
-						"a failed save, or half as much damage on a successful one. The",
-						"damage type, area, and type of saving throw are determined",
-						"by the wyrmling's Draconic Lineage trait.",
-					]),
-				}],
-				traits : [{
-					name : "Draconic Lineage",
-					description : desc([
-						"The wyrmling has a lineage that determines",
-						"a damage type to which they have immunity and which applies",
-						"to the damage dealt by their Spit Breath and Breath Weapon",
-						"actions. See the Draconic Lineages table for more information.",
-						"lineage		Damage type	Area",
-						"Black/Copper	Acid		5x30 ft. line (Dex save)",
-						"Silver/White 	Cold		15 ft. cone (Con save)",
-						"Brass			Fire		5x30 ft. line (Dex save)",
-						"Gold/Red 		Fire		15 ft. cone (Con save)",
-						"Blue/Bronze	Lightning	5x30 ft. line (Dex save)",
-						"Green 			Poison		15 ft. cone (Con save)",
-					]),
-				}, {
-					name : "Shared Resistance",
-					description : desc([
-						"The wyrmling's caregiver has resistance to",
-						"the damage type associated with their Draconic Lineage, and",
-						"takes no damage from the wyrmling's Breath Weapon action.",
-					]),
-				}],
-				header : "Dragon",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"earth elemental" : {
-				name : "Earth Elemental",
-				source : ["BMC", 14],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of an Earth Elemental Companion",
-				]),
-				creaturesAdd : [["Earth Elemental"]],
-				creatureOptions : [{
-				name : "Earth Elemental",
-				source : [["BMC", 14]],
-				size : 2,
-				type : "Elemental",
-				alignment : "Unaligned",
-				ac : "15+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft", "30 ft Burrow"],
-				scores : [16, 8, 15, 5, 10, 8],
-				saves : ["", "", "Prof", "", "", ""],
-				skills : {
-					"Athletics" : 5,
-				},
-				damage_immunities : "Poison",
-				condition_Immunities : ["Petrified", "Poisoned"],
-				senses : ["Darkvision 60 ft", "Tremorsense 30 ft"],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Slam (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Bludgeoning"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Stretch Attack (2 Ferocity).",
-					description : desc([
-						"The elemental makes",
-						"a signature attack with a reach of 10 feet. On a hit, the attack",
-						"deals an extra PB damage, and the elemental can pull the target 5 feet toward them.",
-					]),
-				}, {
-					name : "3rd Level: Earthshaker (5 Ferocity).",
-					description : desc([
-						"Ferocity). The elemental strikes the",
-						"ground, and each creature within 10 feet of them must succeed",
-						"on a DC 10 plus PB Dexterity saving throw or be knocked",
-						"prone. The elemental's caregiver automatically succeeds on",
-						"this saving throw.",
-					]),
-				}, {
-					name : "5th Level: Transmute Ground (8 Ferocity)",
-					description : desc([
-						"The elemental",
-						"picks a 10-foot-square area of ground they can see within",
-						"30 feet of them. Each creature standing in the area must succeed",
-						"on a DC 10 plus PB Strength saving throw or partially",
-						"sink into the ground and become restrained. A creature can",
-						"use their action to make a DC 10 plus PB Strength (Athletics)",
-						"check, freeing themself or another creature within their",
-						"reach on a success and ending the restrained condition for the",
-						"freed creature.",
-					]),
-				}, {
-					name : "Toss Me (Bonus Action)",
-					description : desc([
-						"While the elemental is within 5 feet of their caregiver,",
-						"they can hurl the caregiver 5 times PB feet in any direction,",
-						"including up. If the caregiver would normally take damage",
-						"from a fall after being thrown, they can negate the damage",
-						"with a successful DC 15 Dexterity saving throw.",
-					]),
-				}],
-				trait : [{
-					name : "Earth Glide",
-					description : desc([
-						"The elemental can burrow through nonmagical,",
-						"unworked earth and stone. While doing so, the elemental",
-						"doesn't disturb the material they move through. While they",
-						"use Earth Glide, the elemental can't be used as a mount.",
-					]),
-				}],
-				header : "Elemental",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"gelatinous cube" : {
-				name : "Gelatinous Cube",
-				source : ["BMC", 15],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Gelatinous Cube Companion",
-				]),
-				creaturesAdd : [["Gelatinous Cube"]],
-				creatureOptions : [{
-				name : "Gelatinous Cube",
-				source : [["BMC", 15]],
-				size : 2,
-				type : "Ooze",
-				alignment : "Unaligned",
-				ac : "11+Prof",
-				hp : 8,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft"],
-				scores : [16, 8, 16, 5, 10, 8],
-				saves : ["", "", "Prof", "", "", ""],
-				skills : {
-					"Stealth" : 1,
-				},
-				damage_immunities : "Acid",
-				condition_Immunities : ["Blinded", "Deafened", "Prone"],
-				senses : ["Blindsight 60 ft (Blind Beyond this Radius)"],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Pseudopod (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Acid"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Burning Acid (2 Ferocity)",
-					description : desc([
-						"The gelatinous cube",
-						"makes a signature attack with a reach of 10 feet. On a hit, the",
-						"attack deals an extra PB damage, and a target that takes damage",
-						"from the attack can't regain hit points until the start of your",
-						"next turn.",
-					]),
-				}, {
-					name : "3rd Level: Slime Shower (5 Ferocity)",
-					description : desc([
-						"The cube spins rapidly,",
-						"raining a shower of sticky, acidic slime around them. Each",
-						"creature within 5 feet of the cube must succeed on a DC 10",
-						"plus PB Dexterity saving throw or take 1d6 acid damage and",
-						"have their speed reduced to 0 until the start of the cube's",
-						"next turn. The cube's caregiver automatically succeeds on this",
-						"saving throw.",
-					]),
-				}, {
-					name : "5th Level: Engulf (8 Ferocity)",
-					description : desc([
-						"The cube attempts to pull a",
-						"Large or smaller creature within 5 feet of them into their body.",
-						"That creature must make a DC 10 plus PB Dexterity saving",
-						"throw. On a failure, the target enters the cube's space without",
-						"provoking opportunity attacks, takes PBd6 acid damage, and is",
-						"engulfed. On a success, a creature takes half as much damage,",
-						"doesn't move, and isn't engulfed.",
-						"An engulfed creature can't breathe, is restrained, and takes",
-						"PBd6 acid damage at the start of each of the cube's turns.",
-						"When the cube moves, the engulfed creature moves with",
-						"them. An engulfed creature can try to escape by taking an",
-						"action to make a DC 10 plus PB Strength check. On a success,",
-						"the creature escapes and enters a space of their choice within",
-						"5 feet of the cube.",
-						"The cube can engulf one Large creature or up to four",
-						"Medium or smaller creatures at a time.",
-					]),
-				}],
-				trait : [{
-					name : "Flowing Form",
-					description : desc([
-						"The cube's caregiver can enter a space occupied",
-						"by the cube without becoming engulfed. While in the",
-						"same space as the cube, the caregiver can attack and interact",
-						"with creatures engulfed by the cube without harming or taking",
-						"damage from the cube.",
-					]),
-				}, {
-					name : "Transparent",
-					description : desc([
-						"Even when the cube is in plain sight, it takes a",
-						"successful DC 10 plus PB Wisdom (Perception) check to spot a",
-						"cube that has neither moved nor attacked. A creature that tries",
-						"to enter the cube's space while unaware of the cube takes 3",
-						"(1d6) acid damage and can't enter the space.",
-					]),
-				}],	
-				header : "Ooze",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(8 + beaLvl * 8);
-							HDobj.altStr.push(" = 8 as a base\n + " + (beaLvl * 8) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"giant spider" : {
-				name : "Giant Spider",
-				source : ["BMC", 16],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Giant Spider Companion",
-				]),
-				creaturesAdd : [["Giant Spider"]],
-				creatureOptions : [{
-				name : "Giant Spider",
-				source : [["BMC", 16]],
-				size : 2,
-				type : "Beast",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 6,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft", "30 ft Climb"],
-				scores : [15, 16, 12, 5, 10, 8],
-				saves : ["Prof", "Prof", "", "", "", ""],
-				skills : {
-					"Stealth" : 5,
-				},
-				senses : ["Darkvision 60 ft "],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 2,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Destabilizing Attack (2 Ferocity)",
-					description : desc([
-						"The spider makes",
-						"a signature attack. On a hit, the attack deals its normal effects,",
-						"and the target has disadvantage on the next attack roll they",
-						"make before the start of the spider's next turn.",
-					]),
-				}, {
-					name : "3rd Level: Web (5 Ferocity)",
-					description : desc([
-						"The spider shoots strands of",
-						"sticky webs at one creature they can see within 60 feet of",
-						"them. The target must succeed on a DC 10 plus PB Dexterity",
-						"saving throw or be restrained by webbing. As an action, the",
-						"restrained target can make a DC 10 plus PB Strength check,",
-						"bursting the webbing and ending the restrained condition on",
-						"themself on a success.",
-					]),
-				}, {
-					name : "5th Level: Engulf (8 Ferocity)",
-					description : desc([
-						"The spider makes signature",
-						"attacks against PB creatures of their choice within 5 feet",
-						"of them. On a hit, the target is poisoned until the end of their next turn.",
-					]),
-				}, {
-					name : "Sticky Stuff (Bonus Action) (1/Long Rest)",
-					description : desc([
-						"While the spider's caregiver is",
-						"within 5 feet of it, the spider can coat the bottom of the caregiver's",
-						"feet or footwear in a selective adhesive. Tis allows the",
-						"caregiver to move up, down, and across vertical surfaces and",
-						"upside down along ceilings, while leaving their hands free and",
-						"giving the caregiver a climbing speed equal to their walking",
-						"speed. The adhesive wears of after 10 minutes.",
-					]),
-				}],
-				trait : [{
-					name : "Spider Climb",
-					description : desc([
-						"The spider can climb difficult surfaces,",
-						"including upside down on ceilings, without needing to make an",
-						"ability check.",
-					]),
-				}, {
-					name : "Web Sense",
-					description : desc([
-						"While in contact with a web, the spider knows",
-						"the exact location of any other creature in contact with",
-						"the same web.",
-					]),
-				}, {
-					name : "Web Walker",
-					description : desc([
-						"The spider ignores movement restrictions caused by webbing.",
-					]),
-				}],
-				header : "Beast",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(6 + beaLvl * 6);
-							HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"giant toad" : {
-				name : "Giant Toad",
-				source : ["BMC", 17],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Giant Toad Companion",
-				]),
-				creaturesAdd : [["Giant Toad"]],
-				creatureOptions : [{
-				name : "Giant Toad",
-				source : [["BMC", 17]],
-				size : 2,
-				type : "Beast",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft", "30 ft Swim"],
-				scores : [16, 12, 15, 5, 10, 10],
-				saves : ["Prof", "", "Prof", "", "", ""],
-				skills : {
-					"Athletics" : 5,
-					"Perception" : 2,
-				},
-				senses : ["Darkvision 30 ft "],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Bludgeoning"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Stretch Attack (2 Ferocity)",
-					description : desc([
-						"The toad makes a signature",
-						"attack with a reach of 10 feet by using their tongue. On a",
-						"hit, the attack deals an extra PB damage and the toad can pull",
-						"the target 5 feet toward them.",
-					]),
-				}, {
-					name : "3rd Level: Fast Food (5 Ferocity)",
-					description : desc([
-						"The toad makes a signature",
-						"attack. On a hit, the attack deals its normal effects, and the",
-						"toad can jump up to 20 feet in any direction without provoking",
-						"opportunity attacks. If the target of the attack is Large or",
-						"smaller, the toad brings the target with them.",
-					]),
-				}, {
-					name : "5th Level: Swallow (8 Ferocity)",
-					description : desc([
-						"The toad attempts to swallow",
-						"a Medium or smaller creature within 5 feet of them, which",
-						"must make a DC 10 plus PB Dexterity saving throw. On a failure,",
-						"the target takes PBd6 bludgeoning damage and is swallowed.",
-						"On a success, the target takes half as much damage and",
-						"isn't swallowed.",
-						"A swallowed target is blinded and restrained, they have total",
-						"cover against attacks and other effects outside the toad, and",
-						"they take PBd6 acid damage at the start of each of the toad's",
-						"turns. The toad can have only one target swallowed at a time.",
-						"Whenever the toad takes damage, they must succeed on a",
-						"Constitution saving throw or regurgitate the swallowed creature,",
-						"which falls prone in a space within 5 feet of the toad.",
-						"The DC for this saving throw equals 10 or half the damage the",
-						"toad takes, whichever is higher. If the toad is incapacitated or",
-						"dies, a swallowed creature is no longer restrained by the toad",
-						"and can escape from the corpse using 5 feet of movement,",
-						"exiting prone.",
-					]),
-				}, {
-					name : "Psychedelic Skin (Bonus Action) (1/Long Rest)",
-					description : desc([
-						"While the toad's caregiver",
-						"is within 5 feet of the toad, the toad can use a bonus action",
-						"to coat a melee weapon held by the caregiver with poison",
-						"secreted from the toad's skin. The poison lasts for 1 hour or",
-						"until the weapon deals damage as part of an attack. When a",
-						"creature takes damage from the weapon, they must succeed",
-						"on a DC 10 + PB Constitution saving throw or become poisoned",
-						"for 1 minute. The creature can repeat the saving throw",
-						"at the end of each of their turns, ending the effect on themself",
-						"on a success.",
-					]),
-				}],
-				trait : [{
-					name : "Amphibious",
-					description : desc([
-						"The toad can breathe air and water.",
-					]),
-				}, {
-					name : "Standing Leap",
-					description : desc([
-						"The toad's long jump is up to 20 feet and",
-						"their high jump is up to 10 feet, with or without a running start.",
-					]),
-				}],
-				header : "Beast",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"giant weasel" : {
-				name : "Giant Weasel",
-				source : ["BMC", 18],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Giant Weasel Companion",
-				]),
-				creaturesAdd : [["Giant Weasel"]],
-				creatureOptions : [{
-				name : "Giant Weasel",
-				source : [["BMC", 18]],
-				size : 2,
-				type : "Beast",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["40 ft"],
-				scores : [12, 16, 14, 5, 12, 10],
-				saves : ["Prof", "Prof", "", "", "", ""],
-				skills : {
-					"Acrobatics" : 5, 
-					"Perception" : 3, 
-					"Stealth" : 5,
-				},
-				senses : ["Darkvision 60 ft ", "The weasel has advantage on Wisdom (Perception) checks that rely on hearing or smell."],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 2,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Overwhelming Attack (2 Ferocity)",
-					description : desc([
-						"The weasel",
-						"makes a signature attack. On a hit, the attack deals an extra PB",
-						"damage, and the target can't take reactions until the start of",
-						"the weasel's next turn.",
-					]),
-				}, {
-					name : "3rd Level: Clamp Down (5 Ferocity)",
-					description : desc([
-						"The weasel makes a",
-						"signature attack. On a hit, the attack deals its normal effects,",
-						"and the target is grappled (escape DC 10 plus PB). While",
-						"grappled, the target is restrained and the weasel can't bite",
-						"another target.",
-					]),
-				}, {
-					name : "5th Level: Bite Frenzy (8 Ferocity)",
-					description : desc([
-						"The weasel makes signature",
-						"attacks against PB creatures of their choice within 5 feet of",
-						"the weasel. On a hit, the target of the attack is knocked prone.",
-					]),
-				}],
-				trait : [{
-					name : "Treasure Sense",
-					description : desc([
-						"The weasel can pinpoint, by scent, the",
-						"location of precious metals and stones, such as coins and gems,",
-						"within 10 feet of them.",
-					]),
-				}],
-				header : "Beast",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"hell hound" : {
-				name : "Hell Hound",
-				source : ["BMC", 19],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Hell Hound Companion",
-				]),
-				creaturesAdd : [["Hell Hound"]],
-				creatureOptions : [{
-				name : "Hell Hound",
-				source : [["BMC", 19]],
-				size : 3,
-				type : "Fiend",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["50 ft"],
-				scores : [16, 12, 14, 6, 12, 8],
-				saves : ["", "", "Prof", "", "", ""],
-				skills : {
-					"Perception" : 3,
-				},
-				senses : ["Darkvision 60 ft ", "The hound has advantage on Wisdom (Perception) checks that rely on hearing or smell."],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Lava Spittle (2 Ferocity)",
-					description : desc([
-						"The hound makes a signature",
-						"attack. On a hit, the attack deals an extra PB damage, and",
-						"a creature the hound chooses within 5 feet of them other than",
-						"the target takes PB fire damage.",
-					]),
-				}, {
-					name : "3rd Level: Brutal Charge (5 Ferocity)",
-					description : desc([
-						"The hound can move",
-						"up to their speed without provoking opportunity attacks.",
-						"During or at the end of this move, they can make a signature",
-						"attack against one target.",
-					]),
-				}, {
-					name : "5th Level: Fire Breath (8 Ferocity)",
-					description : desc([
-						"The hound exhales fire",
-						"in a 15-foot cone. Each creature in that area must make a",
-						"DC 10 plus PB Dexterity saving throw, taking PBd6",
-						"fire damage on a failed save, or half as much",
-						"damage on a successful one.",
-					]),
-				}],
-				trait : [{
-					name : "Consult Hell (1/Long Rest)",
-					description : desc([
-						"The hound's caregiver can talk to",
-						"the hound about a specific course of action that the caregiver",
-						"plans to take within the next 30 minutes, tapping into divinatory",
-						"power through the hound's connection to the infernal",
-						"realm. After 1 minute, the hound then gives a response based",
-						"on its own objective prophetic sense of the outcome: one",
-						"bark for good results, two barks for bad results, three barks for",
-						"both good and bad results, and no barks for results that aren't",
-						"especially good or bad.",
-					]),
-				}],
-				header : "Fiend",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"mimic" : {
-				name : "Mimic",
-				source : ["BMC", 20],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Mimic Companion",
-				]),
-				creaturesAdd : [["Mimic"]],
-				creatureOptions : [{
-				name : "Mimic",
-				source : [["BMC", 20]],
-				size : 3,
-				type : "Monstrosity",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["30 ft"],
-				scores : [16, 12, 15, 5, 12, 8],
-				saves : ["", "Prof", "", "", "", ""],
-				damage_immunities : "Acid",
-				condition_immunities : "Prone",
-				skills : {
-					"Stealth" : 3,
-				},
-				senses : ["Darkvision 60 ft "],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Distracting Attack (2 Ferocity)",
-					description : desc([
-						"The mimic makes",
-						"a signature attack. On a hit, the attack deals its normal effects,",
-						"and the next attack made against the target before the start of",
-						"the mimic's next turn has advantage.",
-					]),
-				}, {
-					name : "3rd Level: Adhesive Pseudopods (5 Ferocity)",
-					description : desc([
-						"The mimic",
-						"attempts to touch each creature of their choice within 5 feet of",
-						"them. Each target must succeed on a DC 10 plus PB Dexterity",
-						"saving throw or be grappled (escape DC 10 plus PB).",
-					]),
-				}, {
-					name : "5th Level: I'm You (8 Ferocity)",
-					description : desc([
-						"The mimic uses their",
-						"Shapechanger trait to polymorph into one Large or smaller",
-						"creature they can see within 5 feet of them, with this form",
-						"lasting until the start of the mimic's next turn. Other than size,",
-						"the mimic's statistics do not change. After transforming, the",
-						"mimic can make a signature attack against the creature whose",
-						"form they have taken, and that creature must also make a DC",
-						"10 plus PB Wisdom saving throw. On a failure, the creature",
-						"has disadvantage on attack rolls and saving throws, and attacks",
-						"against the creature have advantage, until the start of the mimic's next turn.",
-					]),
-				}, {
-					name : "Wearable Companion (Bonus Action)",
-					description : desc([
-						"While the mimic is within 5 feet of",
-						"their caregiver, the mimic can cover the caregiver's body and",
-						"take on the appearance of clothing. While wearing the mimic,",
-						"the caregiver can change the appearance of their clothing at",
-						"will (no action required) as long as they are not incapacitated,",
-						"and has advantage on Dexterity (Stealth) checks. Any attack",
-						"that hits the caregiver also hits the mimic, and vice versa, with",
-						"both taking the full damage and effect of the attack.",
-						"While worn in this way, the mimic can't move or take actions",
-						"except to revert to their most recent form (a bonus action),",
-						"which ends the state of being worn by their caregiver. If the",
-						"mimic enters a rampage, the state of being worn ends immediately.",
-						"When the mimic is no longer worn by the caregiver, the",
-						"mimic enters the nearest unoccupied space of their choice.",
-					])
-				}],
-				trait : [{
-					name : "Shapechanger",
-					description : desc([
-						"The mimic can use their action to polymorph",
-						"into an object or back into their true, amorphous form. Their",
-						"statistics are the same in each form. Any equipment they are",
-						"wearing or carrying isn't transformed. The mimic reverts to",
-						"their true form if they die.",
-					]),
-				}, {
-					name : "False Appearance (Object Form Only)",
-					description : desc([
-						"While the mimic",
-						"remains motionless, they are indistinguishable from an ordinary object.",
-					]),
-				}],
-				header : "Monstrosity",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"owlbear" : {
-				name : "Owlbear",
-				source : ["BMC", 21],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Owlbear Companion",
-				]),
-				creaturesAdd : [["Owlbear"]],
-				creatureOptions : [{
-				name : "Owlbear",
-				source : [["BMC", 21]],
-				size : 2,
-				type : "Monstrosity",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["40 ft"],
-				scores : [16, 12, 15, 5, 12, 10],
-				saves : ["Prof", "", "Prof", "", "", ""],
-				skills : {
-					"Athletics" : 5, 
-					"Perception" : 3,
-				},
-				senses : ["Darkvision 60 ft ", "The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell."],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Claw (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Slashing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Violent Attack (2 Ferocity)",
-					description : desc([
-						"The owlbear makes a",
-						"signature attack. On a hit, the attack deals an extra PB damage,",
-						"and the owlbear can move the target 5 feet in any direction.",
-					]),
-				}, {
-					name : "3rd Level: Owlie Oop (5 Ferocity)",
-					description : desc([
-						"The owlbear leaps up to",
-						"20 feet without provoking opportunity attacks. When they",
-						"land, each creature within 5 feet of them must succeed on a",
-						"DC 10 plus PB Strength saving throw or be knocked prone.",
-					]),
-				}, {
-					name : "5th Level: Bear Hug (8 Ferocity)",
-					description : desc([
-						"The owlbear attempts to",
-						"grab and crush a creature within 5 feet of them that they can",
-						"see, which must make a DC 10 plus PB Dexterity saving throw.",
-						"On a failure, the target takes PBd10 bludgeoning damage and",
-						"is grappled (escape DC 10 plus PB). On a success, the target",
-						"takes half as much damage and is not grappled. Until this grapple",
-						"ends, the target is also restrained. The grapple ends if the",
-						"owlbear uses Bear Hug on another target.",
-					]),
-				}, {
-					name : "Give a Hoot (Bonus Action) (1/Long Rest)",
-					description : desc([
-						"The owlbear lets loose a unique",
-						"battle cry. If the owlbear's caregiver can hear the cry, the caregiver",
-						"gains 5 times PB temporary hit points.",
-					])
-				}],
-				header : "Monstrosity",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"sporeling" : {
-				name : "Sporeling",
-				source : ["BMC", 22],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Sporeling Companion",
-				]),
-				creaturesAdd : [["Sporeling"]],
-				creatureOptions : [{
-				name : "Sporeling",
-				source : [["BMC", 22]],
-				size : 2,
-				type : "Plant",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["40 ft"],
-				scores : [8, 16, 15, 5, 12, 12],
-				saves : ["", "", "Prof", "", "", ""],
-				damage_immunities : ["Acid", "Poison"],
-				condition_immunities : "Poisoned",
-				skills : {
-					"Perception" : 3,
-				},
-				senses : ["Darkvision 60 ft "],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Corrupting Cough (Signature Attack)",
-					ability : 2,
-					damage : [1, 6, "Acid"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Destabilizing Attack (2 Ferocity)",
-					description : desc([
-						"The sporeling",
-						"makes a signature attack. On a hit, the attack deals its normal",
-						"effects, and the target has disadvantage on the next attack roll",
-						"they make before the start of the sporeling's next turn.",
-					]),
-				}, {
-					name : "3rd Level: Spore Burst (5 Ferocity)",
-					description : desc([
-						"Each creature of the",
-						"sporeling's choice within 5 feet of them must succeed on a",
-						"DC 10 plus PB Constitution saving throw or become poisoned",
-						"until the start of the sporeling's next turn.",
-					]),
-				}, {
-					name : "5th Level: Hallucinogenic Spores (8 Ferocity)",
-					description : desc([
-						"Each enemy",
-						"within 10 feet of the sporeling must make a DC 10 plus PB",
-						"Wisdom saving throw. On a failure, the sporeling chooses",
-						"whether the target creature uses their reaction to make a",
-						"melee attack against another creature of the sporeling's choice",
-						"within the target creature's reach, or whether the target creature falls prone.",
-					]),
-				}, {
-					name : "Invigorating Spores (Bonus Action) (1/Long Rest)",
-					description : desc([
-						"While the sporeling's",
-						"caregiver is within 30 feet of them, the sporeling can use a",
-						"bonus action to give the caregiver advantage on saving throws",
-						"for 1 minute.",
-					])
-				}],
-				trait : [{
-					name : "False Appearance",
-					description : desc([
-						"While the sporeling remains motionless, they are indistinguishable from an ordinary fungus.",
-					]),
-				}],
-				header : "Plant",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
-			"worg" : {
-				name : "Worg",
-				source : ["BMC", 23],
-				minlevel : 1,
-				description : desc([
-					"You gain the company of a Worg Companion",
-				]),
-				creaturesAdd : [["Worg"]],
-				creatureOptions : [{
-				name : "Worg",
-				source : [["BMC", 23]],
-				size : 2,
-				type : "Monstrosity",
-				alignment : "Unaligned",
-				ac : "13+Prof",
-				hp : 7,
-				hd : [2, 8],
-				hdLinked : ["beastheart"],
-				speed : ["50 ft"],
-				scores : [16, 15, 14, 7, 12, 10],
-				saves : ["Prof", "Prof", "", "", "", ""],
-				skills : {
-					"Perception" : 3,
-				},
-				senses : ["Darkvision 60 ft "],
-				proficiencyBonus : 2,
-				proficiencyBonusLinked : true,
-				attacksAction : 1,
-				attacks : [{
-					name : "Bite (Signature Attack)",
-					ability : 1,
-					damage : [1, 6, "Piercing"],
-					range : "Melee (5 ft)",
-					description : "",
-					modifiers : ["", "Prof"],
-					abilitytodamage : false,
-				}],
-				features : [{
-					name : "1st Level: Overwhelming Attack (2 Ferocity)",
-					description : desc([
-						"Te worg makes",
-						"a signature attack. On a hit, the attack deals an extra PB",
-						"damage, and the target can't take reactions until the start of the",
-						"worg's next turn.",
-					]),
-				}, {
-					name : "3rd Level: Brutal Charge (5 Ferocity)",
-					description : desc([
-						"Te worg moves up",
-						"to their speed without provoking opportunity attacks. During",
-						"or at the end of this move, they can make a signature attack",
-						"against one target.",
-					]),
-				}, {
-					name : "5th Level: Bite Frenzy (8 Ferocity)",
-					description : desc([
-						"Te worg makes bite",
-						"attacks against PB creatures of their choice within 5 feet of",
-						"them. On a hit, a target is knocked prone.",
-					]),
-				}],
-				trait : [{
-					name : "Move as One",
-					description : desc([
-						"While the worg's caregiver is mounted on the",
-						"worg, opportunity attacks against the worg or their caregiver",
-						"are made with disadvantage. Te worg's caregiver can mount",
-						"or dismount the worg by spending 5 feet of movement.",
-					]),
-				}],
-				header : "Monstrosity",
-					calcChanges : {
-						hp : function (totalHD, HDobj, prefix) {
-							if (!classes.known.beastheart) return;
-							var beaLvl = classes.known.beastheart.level;
-							HDobj.alt.push(7 + beaLvl * 7);
-							HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from your beastheart level");
-						},
-						setAltHp : true,
-						hpForceRecalc : true
-					},
-				}],
-			},
 		},
 		"natural language" : {
 			name : "Natural Language",
@@ -2246,6 +780,53 @@ CompanionList ["beastheart companion"] = {
 	header : "Companion",},
 	}
 
+CompanionList ["beastheart companion protector"] = {
+	name: "Beastheart Companion Protector",
+	nameMenu: "Companion (Beastheart Protector subclass feature)",
+	source: ["BMC", 8],
+	attributesAdd : {
+	header : "Companion",},
+    traits : [{
+        name : "Thickened Hide",
+        minlevel : 7,
+        description: desc([
+			"Your companion's AC increases by 2"
+        ]),
+		addMod: [{
+			type: "",
+			field: "Comp.Use.AC",
+			mod: 2,
+			text: "A 7th-level Beastheart companion gains Thickened Hide, granting it +2 AC."
+			}],
+        // eval: function(prefix, lvl) {
+        //     if(!classes.known.beastheart || !(/protector/i).test(classes.known.beastheart.subclass)) return;
+        //     var fldName = prefix + "Comp.Use.AC";
+        //     var newAC = What(prefix + "Comp.Use.AC") + "+2";
+        //     Value(fldName, newAC);
+
+        //     var traitBox = prefix + "Comp.Use.Traits";
+        //     var existingTraits = What(traitBox); // Get current value
+        //     // AddTooltip(prefix + "Comp.Use.Traits", "test", ""); // this adds a tooltip
+        //     var feature = "\u25C6 Thickened Hide" + desc(["Your companion's AC increases by 2"])
+        //     Value(traitBox, existingTraits + feature);
+
+        // },
+        // removeeval : function(prefix, lvl) {
+        //     var fldName = prefix + "Comp.Use.AC";
+        //     var newAC = What(prefix + "Comp.Use.AC")+ "-2";
+        //     Value(fldName, newAC);
+
+        //     var traitBox = prefix + "Comp.Use.Traits";
+        //     var existingTraits = What(traitBox);
+        //     var featureToRemove = new RegExp("\u25C6 Thickened Hide[\\s\\S]*?(?=\u25C6|$)");
+        //     var updatedTraits = existingTraits.replace(featureToRemove, "");
+        //     Value(traitBox, updatedTraits);
+        // }
+    }],
+	}
+
+
+
 
 CreatureList["basilisk"] = {
 	name : "Basilisk",
@@ -2253,7 +834,7 @@ CreatureList["basilisk"] = {
 	size : 3,
 	type : "Monstrosity",
 	alignment : "Unaligned",
-	companion : "beastheart companion",
+	companion : ["beastheart companion", "beastheart companion protector"],
 	companionApply : "beastheart companion",
 	ac : "15+Prof",
 	hp : 7,
@@ -2316,81 +897,1291 @@ CreatureList["basilisk"] = {
 	},
 }
 
-// CreatureList["blood hawk"] = {
-// 	name : "Blood Hawk",
-// 	source : ["BMC", 10],
-// 	size : 4,
-// 	type : "Beast",
-// 	alignment : "Unaligned",
-// 	ac : "13+Prof",
-// 	hp : 6,
-// 	hd : [2, 8],
-// 	hdLinked : ["beastheart"],
-// 	speed : ["10 ft", "60 ft Fly"],
-// 	scores : [8, 16, 12, 5, 14, 10],
-// 	saves : ["", "Prof", "", "", "Prof", ""],
-// 	skills : {
-// 		"Perception" : 4,
-// 	},
-// 	senses : "The hawk has advantage on Wisdom (Perception) checks that rely on sight.",
-// 	proficiencyBonus : 2,
-// 	proficiencyBonusLinked : true,
-// 	attacksAction : 1,
-// 	attacks : [{
-// 		name : "Beak (Signature Attack)",
-// 		ability : 2,
-// 		damage : [1, 6, "Piercing"],
-// 		range : "Melee (5 ft)",
-// 		description : "",
-// 		modifiers : ["", "Prof"],
-// 		abilitytodamage : false,
-// 	}],
-// 	features : [{
-// 		name : "1st Level: Distracting Attack (2 Ferocity)",
-// 		description : desc([
-// 			"The hawk makes a signature attack. On a hit, the attack deals its normal effects,",
-// 			"and the next attack made against the target before the start of",
-// 			"the hawk's next turn has advantage.",
-// 		]),
-// 	}, {
-// 		name : "3rd Level: Swooping Attack (5 Ferocity)",
-// 		description : desc([
-// 			"The hawk moves up to their speed without provoking opportunity attacks. During",
-// 			"or at the end of this move, they can make a signature attack",
-// 			"against one target. On a hit, the attack deals its normal effects,",
-// 			"and the target must succeed on a DC 10 plus PB Strength saving",
-// 			"throw or drop one item they are holding.",
-// 		]),
-// 		minlevel : 3,
-// 	}, {
-// 		name : "5th Level: Storm of Talons (8 Ferocity)",
-// 		description : desc([
-// 			"The hawk moves up to their speed without provoking opportunity attacks, then",
-// 			"can target one creature within 5 feet of them, which must make",
-// 			"a DC 10 plus PB Dexterity saving throw. On a failure, the target",
-// 			"takes PBd10 slashing damage and is blinded until the end of",
-// 			"the hawk's next turn. On a success, the target takes half as much",
-// 			"damage and is not blinded.",
-// 		]),
-// 		minlevel : 5,
-// 	}, {
-// 		name : "Swoop In (1/Long Rest) (Reaction)",
-// 		description : desc([
-// 			"When the hawk is within 30 feet of their caregiver and the caregiver is hit with an attack, the hawk",
-// 			"can move up to their speed without provoking opportunity attacks. If the hawk ends this movement within 5 feet of the",
-// 			"caregiver, the hawk is hit by the attack instead, and the attack",
-// 			"deals half as much damage.",
-// 		]),
-// 		action : "reaction",
-// 	}],
-// 	calcChanges : {
-// 		hp : function (totalHD, HDobj, prefix) {
-// 			if (!classes.known.beastheart) return;
-// 			var beaLvl = classes.known.beastheart.level;
-// 			HDobj.alt.push(6 + beaLvl * 6);
-// 			HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from your beastheart level");
-// 		},
-// 		setAltHp : true,
-// 		hpForceRecalc : true,
-// 	},
-// }
+
+CreatureList["blood hawk"] = {
+	name : "Blood Hawk",
+	source : ["BMC", 10],
+	size : 4,
+	type : "Beast",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 6,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["10 ft", "60 ft Fly"],
+    scores : [8, 16, 12, 5, 14, 10],
+    saves : ["", "Prof", "", "", "Prof", ""],
+    skills : {
+        "Perception" : 4,
+    },
+    senses : ["The hawk has advantage on Wisdom (Perception) checks that rely on sight."],
+	proficiencyBonus : 2,
+	proficiencyBonusLinked : true,
+	attacksAction : 1,
+    attacks : [{
+        name : "Beak (Signature Attack)",
+        ability : 2,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Distracting Attack (2 Ferocity)",
+        description : desc([
+            "The hawk makes a",
+            "signature attack. On a hit, the attack deals its normal effects,",
+            "and the next attack made against the target before the start of",
+            "the hawk's next turn has advantage.",
+        ]),
+    }, {
+        name : "3rd Level: Swooping Attack (5 Ferocity)",
+        description : desc([
+            "The hawk moves up",
+            "to their speed without provoking opportunity attacks. During",
+            "or at the end of this move, they can make a signature attack",
+            "against one target. On a hit, the attack deals its normal effects,",
+            "and the target must succeed on a DC 10 plus PB Strength saving",
+            "throw or drop one item they are holding.",
+        ]),
+    }, {
+        name : "5th Level: Storm of Talons (8 Ferocity)",
+        description : desc([
+            "The hawk moves up",
+            "to their speed without provoking opportunity attacks, then",
+            "can target one creature within 5 feet of them, which must make",
+            "a DC 10 plus PB Dexterity saving throw. On a failure, the target",
+            "takes PBd10 slashing damage and is blinded until the end of",
+            "the hawk's next turn. On a success, the target takes half as much",
+            "damage and is not blinded.",
+        ]),
+    }, {
+        name : "Swoop In (1/Long Rest) (Reaction)",
+        description : desc([
+            "When the hawk is within 30 feet of",
+            "their caregiver and the caregiver is hit with an attack, the hawk",
+            "can move up to their speed without provoking opportunity",
+            "attacks. If the hawk ends this movement within 5 feet of the",
+            "caregiver, the hawk is hit by the attack instead, and the attack",
+            "deals half as much damage.",
+        ]),
+        action : "reaction",
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(6 + beaLvl * 6);
+			HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["bulette"] = {
+	name : "Bulette",
+	source : ["BMC", 11],
+	size : 2,
+	type : "Monstrosity",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "15+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft", "30 ft Burrow"],
+    scores : [16, 10, 15, 5, 8, 8],
+    saves : ["", "", "Prof", "", "", ""],
+    skills : {
+        "Perception" : 1,
+    },
+    senses : ["Darkvision 60 ft", "Tremorsense 30 ft"],
+	proficiencyBonus : 2,
+	proficiencyBonusLinked : true,
+	attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Violent Attack (2 Ferocity)",
+        description : desc([
+            "The bulette makes a",
+            "signature attack. On a hit, the attack deals an extra PB damage,",
+            "and the bulette can move the target 5 feet in any direction.",
+        ]),
+    }, {
+        name : "3rd Level: Burrowing Trip (5 Ferocity)",
+        description : desc([
+            "The bulette moves up",
+            "to half their burrowing speed without provoking opportunity",
+            "attacks. Each creature standing on the ground that the bulette",
+            "moves under must succeed on a DC 10 plus PB Dexterity saving throw or fall prone.",
+        ]),
+    }, {
+        name : "5th Level: Deadly Leap (8 Ferocity)",
+        description : desc([
+            "The bulette leaps up to",
+            "30 feet, and if they land in a space that contains one or more",
+            "creatures, each of those creatures must make a DC 10 plus",
+            "PB Strength saving throw. On a failure, a creature takes PBd6",
+            "bludgeoning damage and is knocked prone. On a success, the",
+            "creature takes half as much damage, isn't knocked prone, and",
+            "is pushed 5 feet out of the bulette's space into an unoccupied",
+            "space of the creature's choice. If no unoccupied space",
+            "is available, the creature instead is knocked prone in",
+            "the bulette's space.",
+        ]),
+    }],
+    traits : [{
+        name : "Plated Protection",
+        description : desc([
+            "The bulette's caregiver can ride on he bulette while the bulette burrows",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["deinonychus"] = {
+	name : "Deinonychus",
+	source : ["BMC", 12],
+	size : 3,
+	type : "Beast",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : "40 ft",
+    scores : [15, 16, 14, 5, 12, 8],
+    saves : ["Prof", "Prof", "", "", "", ""],
+    skills : {
+        "Perception" : 3,
+        "Stealth" : 5,
+    },
+    senses : "",
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 2,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Overwhelming Attack (2 Ferocity)",
+        description : desc([
+            "The deinonychus makes a signature attack. On a hit, the attack deals an",
+            "extra PB damage, and the target can't take reactions until the",
+            "start of the deinonychus's next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Clever Girl (5 Ferocity)",
+        description : desc([
+            "The deinonychus can take",
+            "the Hide action then make a signature attack, or can make a",
+            "signature attack then take the Hide action. If the deinonychus",
+            "hits with the signature attack, they also knock the target prone.",
+            "The deinonychus can move between their Hide action and the",
+            "attack, or vice versa, even if such movement would normally",
+            "negate an attempt to hide.",
+        ]),
+    }, {
+        name : "5th Level: Keep them Down (8 Ferocity)",
+        description : desc([
+            "The deinonychus",
+            "leaps at another creature within 5 feet of them, which must",
+            "make a DC 10 plus PB Dexterity saving throw. On a failure,",
+            "the target takes PBd12 slashing damage and is knocked prone",
+            "and grappled (escape DC 10 plus PB). On a success, the target",
+            "takes half as much damage and is not knocked prone or grappled.",
+            "A creature knocked prone by this feature can't stand up",
+            "until they are no longer grappled. If the deinonychus attacks or",
+            "uses Keep them Down on another target, the grapple ends.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["dragon wyrmling"] = {
+	name : "Dragon Wyrmling",
+	source : ["BMC", 13],
+	size : 3,
+	type : "Dragon",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "15+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft", "30 ft Fly"],
+    scores : [16, 10, 15, 5, 10, 12],
+    saves : ["", "", "", "", "Prof", ""],
+    skills : {
+        "Perception" : 2,
+    },
+    senses : "",
+    damage_immunities : "see the Draconic Lineage Trait",
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Spit Breath (2 Ferocity)",
+        description : desc([
+            "the wyrmling makes a",
+            "signature attack as a ranged weapon attack, with a normal",
+            "range of 30 feet and a long range of 60 feet. On a hit, the",
+            "attack deals an extra PB damage, and all the damage dealt by",
+            "the attack is of the type associated with the wyrmling's lineage",
+            "instead of piercing damage.",
+        ]),
+    }, {
+        name : "3rd Level: Frightful Presence (5 Ferocity)",
+        description : desc([
+            "Each creature of",
+            "the wyrmling's choice that is within 10 feet of the wyrmling",
+            "and aware of them must succeed on a DC 10 plus PB Wisdom",
+            "saving throw or become frightened of the wyrmling for 1",
+            "minute. A creature can repeat the saving throw at the end of",
+            "each of their turns, ending the effect on themself on a success.",
+            "If a creature's saving throw is successful or the effect ends for",
+            "them, the creature is immune to the wyrmling's Frightful Presence ",
+            "for the next 24 hours.",
+        ]),
+    }, {
+        name : "5th Level: Breath Weapon (8 Ferocity).",
+        description : desc([
+            "The wyrmling exhales",
+            "elemental energy that fills an area. Creatures in that area must",
+            "make a DC 10 plus PB saving throw, taking PBd6 damage on",
+            "a failed save, or half as much damage on a successful one. The",
+            "damage type, area, and type of saving throw are determined",
+            "by the wyrmling's Draconic Lineage trait.",
+        ]),
+    }],
+    traits : [{
+        name : "Draconic Lineage",
+        description : desc([
+            "The wyrmling has a lineage that determines",
+            "a damage type to which they have immunity and which applies",
+            "to the damage dealt by their Spit Breath and Breath Weapon",
+            "actions. See the Draconic Lineages table for more information.",
+            "lineage		Damage type	Area",
+            "Black/Copper	Acid		5x30 ft. line (Dex save)",
+            "Silver/White 	Cold		15 ft. cone (Con save)",
+            "Brass			Fire		5x30 ft. line (Dex save)",
+            "Gold/Red 		Fire		15 ft. cone (Con save)",
+            "Blue/Bronze	Lightning	5x30 ft. line (Dex save)",
+            "Green 			Poison		15 ft. cone (Con save)",
+        ]),
+    }, {
+        name : "Shared Resistance",
+        description : desc([
+            "The wyrmling's caregiver has resistance to",
+            "the damage type associated with their Draconic Lineage, and",
+            "takes no damage from the wyrmling's Breath Weapon action.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["earth elemental"] = {
+	name : "Earth Elemental",
+	source : ["BMC", 14],
+	size : 2,
+	type : "Elemental",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "15+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft", "30 ft Burrow"],
+    scores : [16, 8, 15, 5, 10, 8],
+    saves : ["", "", "Prof", "", "", ""],
+    skills : {
+        "Athletics" : 5,
+    },
+    damage_immunities : "Poison",
+    condition_immunities : ["Petrified", "Poisoned"],
+    senses : ["Darkvision 60 ft", "Tremorsense 30 ft"],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Slam (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Bludgeoning"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Stretch Attack (2 Ferocity).",
+        description : desc([
+            "The elemental makes",
+            "a signature attack with a reach of 10 feet. On a hit, the attack",
+            "deals an extra PB damage, and the elemental can pull the target 5 feet toward them.",
+        ]),
+    }, {
+        name : "3rd Level: Earthshaker (5 Ferocity).",
+        description : desc([
+            "Ferocity). The elemental strikes the",
+            "ground, and each creature within 10 feet of them must succeed",
+            "on a DC 10 plus PB Dexterity saving throw or be knocked",
+            "prone. The elemental's caregiver automatically succeeds on",
+            "this saving throw.",
+        ]),
+    }, {
+        name : "5th Level: Transmute Ground (8 Ferocity)",
+        description : desc([
+            "The elemental",
+            "picks a 10-foot-square area of ground they can see within",
+            "30 feet of them. Each creature standing in the area must succeed",
+            "on a DC 10 plus PB Strength saving throw or partially",
+            "sink into the ground and become restrained. A creature can",
+            "use their action to make a DC 10 plus PB Strength (Athletics)",
+            "check, freeing themself or another creature within their",
+            "reach on a success and ending the restrained condition for the",
+            "freed creature.",
+        ]),
+    }, {
+        name : "Toss Me (Bonus Action)",
+        description : desc([
+            "While the elemental is within 5 feet of their caregiver,",
+            "they can hurl the caregiver 5 times PB feet in any direction,",
+            "including up. If the caregiver would normally take damage",
+            "from a fall after being thrown, they can negate the damage",
+            "with a successful DC 15 Dexterity saving throw.",
+        ]),
+    }],
+    trait : [{
+        name : "Earth Glide",
+        description : desc([
+            "The elemental can burrow through nonmagical,",
+            "unworked earth and stone. While doing so, the elemental",
+            "doesn't disturb the material they move through. While they",
+            "use Earth Glide, the elemental can't be used as a mount.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["gelatinous cube"] = {
+	name : "Gelatinous Cube",
+	source : ["BMC", 15],
+	size : 2,
+	type : "Ooze",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "11+Prof",
+	hp : 8,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft"],
+    scores : [16, 8, 16, 5, 10, 8],
+    saves : ["", "", "Prof", "", "", ""],
+    skills : {
+        "Stealth" : 1,
+    },
+    damage_immunities : "Acid",
+    condition_immunities : ["Blinded", "Deafened", "Prone"],
+    senses : ["Blindsight 60 ft (Blind Beyond this Radius)"],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Pseudopod (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Acid"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Burning Acid (2 Ferocity)",
+        description : desc([
+            "The gelatinous cube",
+            "makes a signature attack with a reach of 10 feet. On a hit, the",
+            "attack deals an extra PB damage, and a target that takes damage",
+            "from the attack can't regain hit points until the start of your",
+            "next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Slime Shower (5 Ferocity)",
+        description : desc([
+            "The cube spins rapidly,",
+            "raining a shower of sticky, acidic slime around them. Each",
+            "creature within 5 feet of the cube must succeed on a DC 10",
+            "plus PB Dexterity saving throw or take 1d6 acid damage and",
+            "have their speed reduced to 0 until the start of the cube's",
+            "next turn. The cube's caregiver automatically succeeds on this",
+            "saving throw.",
+        ]),
+    }, {
+        name : "5th Level: Engulf (8 Ferocity)",
+        description : desc([
+            "The cube attempts to pull a",
+            "Large or smaller creature within 5 feet of them into their body.",
+            "That creature must make a DC 10 plus PB Dexterity saving",
+            "throw. On a failure, the target enters the cube's space without",
+            "provoking opportunity attacks, takes PBd6 acid damage, and is",
+            "engulfed. On a success, a creature takes half as much damage,",
+            "doesn't move, and isn't engulfed.",
+            "An engulfed creature can't breathe, is restrained, and takes",
+            "PBd6 acid damage at the start of each of the cube's turns.",
+            "When the cube moves, the engulfed creature moves with",
+            "them. An engulfed creature can try to escape by taking an",
+            "action to make a DC 10 plus PB Strength check. On a success,",
+            "the creature escapes and enters a space of their choice within",
+            "5 feet of the cube.",
+            "The cube can engulf one Large creature or up to four",
+            "Medium or smaller creatures at a time.",
+        ]),
+    }],
+    trait : [{
+        name : "Flowing Form",
+        description : desc([
+            "The cube's caregiver can enter a space occupied",
+            "by the cube without becoming engulfed. While in the",
+            "same space as the cube, the caregiver can attack and interact",
+            "with creatures engulfed by the cube without harming or taking",
+            "damage from the cube.",
+        ]),
+    }, {
+        name : "Transparent",
+        description : desc([
+            "Even when the cube is in plain sight, it takes a",
+            "successful DC 10 plus PB Wisdom (Perception) check to spot a",
+            "cube that has neither moved nor attacked. A creature that tries",
+            "to enter the cube's space while unaware of the cube takes 3",
+            "(1d6) acid damage and can't enter the space.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(8 + beaLvl * 8);
+			HDobj.altStr.push(" = 8 as a base\n + " + (beaLvl * 8) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["giant spider"] = {
+	name : "Giant Spider",
+	source : ["BMC", 16],
+	size : 2,
+	type : "Beast",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 6,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft", "30 ft Climb"],
+    scores : [15, 16, 12, 5, 10, 8],
+    saves : ["Prof", "Prof", "", "", "", ""],
+    skills : {
+        "Stealth" : 5,
+    },
+    senses : ["Darkvision 60 ft "],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 2,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Destabilizing Attack (2 Ferocity)",
+        description : desc([
+            "The spider makes",
+            "a signature attack. On a hit, the attack deals its normal effects,",
+            "and the target has disadvantage on the next attack roll they",
+            "make before the start of the spider's next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Web (5 Ferocity)",
+        description : desc([
+            "The spider shoots strands of",
+            "sticky webs at one creature they can see within 60 feet of",
+            "them. The target must succeed on a DC 10 plus PB Dexterity",
+            "saving throw or be restrained by webbing. As an action, the",
+            "restrained target can make a DC 10 plus PB Strength check,",
+            "bursting the webbing and ending the restrained condition on",
+            "themself on a success.",
+        ]),
+    }, {
+        name : "5th Level: Engulf (8 Ferocity)",
+        description : desc([
+            "The spider makes signature",
+            "attacks against PB creatures of their choice within 5 feet",
+            "of them. On a hit, the target is poisoned until the end of their next turn.",
+        ]),
+    }, {
+        name : "Sticky Stuff (Bonus Action) (1/Long Rest)",
+        description : desc([
+            "While the spider's caregiver is",
+            "within 5 feet of it, the spider can coat the bottom of the caregiver's",
+            "feet or footwear in a selective adhesive. Tis allows the",
+            "caregiver to move up, down, and across vertical surfaces and",
+            "upside down along ceilings, while leaving their hands free and",
+            "giving the caregiver a climbing speed equal to their walking",
+            "speed. The adhesive wears of after 10 minutes.",
+        ]),
+    }],
+    trait : [{
+        name : "Spider Climb",
+        description : desc([
+            "The spider can climb difficult surfaces,",
+            "including upside down on ceilings, without needing to make an",
+            "ability check.",
+        ]),
+    }, {
+        name : "Web Sense",
+        description : desc([
+            "While in contact with a web, the spider knows",
+            "the exact location of any other creature in contact with",
+            "the same web.",
+        ]),
+    }, {
+        name : "Web Walker",
+        description : desc([
+            "The spider ignores movement restrictions caused by webbing.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(6 + beaLvl * 6);
+			HDobj.altStr.push(" = 6 as a base\n + " + (beaLvl * 6) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["giant toad"] = {
+	name : "Giant Toad",
+	source : ["BMC", 17],
+	size : 2,
+	type : "Beast",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft", "30 ft Swim"],
+    scores : [16, 12, 15, 5, 10, 10],
+    saves : ["Prof", "", "Prof", "", "", ""],
+    skills : {
+        "Athletics" : 5,
+        "Perception" : 2,
+    },
+    senses : ["Darkvision 30 ft "],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Bludgeoning"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Stretch Attack (2 Ferocity)",
+        description : desc([
+            "The toad makes a signature",
+            "attack with a reach of 10 feet by using their tongue. On a",
+            "hit, the attack deals an extra PB damage and the toad can pull",
+            "the target 5 feet toward them.",
+        ]),
+    }, {
+        name : "3rd Level: Fast Food (5 Ferocity)",
+        description : desc([
+            "The toad makes a signature",
+            "attack. On a hit, the attack deals its normal effects, and the",
+            "toad can jump up to 20 feet in any direction without provoking",
+            "opportunity attacks. If the target of the attack is Large or",
+            "smaller, the toad brings the target with them.",
+        ]),
+    }, {
+        name : "5th Level: Swallow (8 Ferocity)",
+        description : desc([
+            "The toad attempts to swallow",
+            "a Medium or smaller creature within 5 feet of them, which",
+            "must make a DC 10 plus PB Dexterity saving throw. On a failure,",
+            "the target takes PBd6 bludgeoning damage and is swallowed.",
+            "On a success, the target takes half as much damage and",
+            "isn't swallowed.",
+            "A swallowed target is blinded and restrained, they have total",
+            "cover against attacks and other effects outside the toad, and",
+            "they take PBd6 acid damage at the start of each of the toad's",
+            "turns. The toad can have only one target swallowed at a time.",
+            "Whenever the toad takes damage, they must succeed on a",
+            "Constitution saving throw or regurgitate the swallowed creature,",
+            "which falls prone in a space within 5 feet of the toad.",
+            "The DC for this saving throw equals 10 or half the damage the",
+            "toad takes, whichever is higher. If the toad is incapacitated or",
+            "dies, a swallowed creature is no longer restrained by the toad",
+            "and can escape from the corpse using 5 feet of movement,",
+            "exiting prone.",
+        ]),
+    }, {
+        name : "Psychedelic Skin (Bonus Action) (1/Long Rest)",
+        description : desc([
+            "While the toad's caregiver",
+            "is within 5 feet of the toad, the toad can use a bonus action",
+            "to coat a melee weapon held by the caregiver with poison",
+            "secreted from the toad's skin. The poison lasts for 1 hour or",
+            "until the weapon deals damage as part of an attack. When a",
+            "creature takes damage from the weapon, they must succeed",
+            "on a DC 10 + PB Constitution saving throw or become poisoned",
+            "for 1 minute. The creature can repeat the saving throw",
+            "at the end of each of their turns, ending the effect on themself",
+            "on a success.",
+        ]),
+    }],
+    trait : [{
+        name : "Amphibious",
+        description : desc([
+            "The toad can breathe air and water.",
+        ]),
+    }, {
+        name : "Standing Leap",
+        description : desc([
+            "The toad's long jump is up to 20 feet and",
+            "their high jump is up to 10 feet, with or without a running start.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["giant weasel"] = {
+	name : "Giant Weasel",
+	source : ["BMC", 18],
+	size : 2,
+	type : "Beast",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["40 ft"],
+    scores : [12, 16, 14, 5, 12, 10],
+    saves : ["Prof", "Prof", "", "", "", ""],
+    skills : {
+        "Acrobatics" : 5,
+        "Perception" : 3,
+        "Stealth" : 5,
+    },
+    senses : ["Darkvision 60 ft ", "The weasel has advantage on Wisdom (Perception) checks that rely on hearing or smell."],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 2,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Overwhelming Attack (2 Ferocity)",
+        description : desc([
+            "The weasel",
+            "makes a signature attack. On a hit, the attack deals an extra PB",
+            "damage, and the target can't take reactions until the start of",
+            "the weasel's next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Clamp Down (5 Ferocity)",
+        description : desc([
+            "The weasel makes a",
+            "signature attack. On a hit, the attack deals its normal effects,",
+            "and the target is grappled (escape DC 10 plus PB). While",
+            "grappled, the target is restrained and the weasel can't bite",
+            "another target.",
+        ]),
+    }, {
+        name : "5th Level: Bite Frenzy (8 Ferocity)",
+        description : desc([
+            "The weasel makes signature",
+            "attacks against PB creatures of their choice within 5 feet of",
+            "the weasel. On a hit, the target of the attack is knocked prone.",
+        ]),
+    }],
+    trait : [{
+        name : "Treasure Sense",
+        description : desc([
+            "The weasel can pinpoint, by scent, the",
+            "location of precious metals and stones, such as coins and gems,",
+            "within 10 feet of them.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["hell hound"] = {
+	name : "Hell Hound",
+	source : ["BMC", 19],
+	size : 3,
+	type : "Fiend",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["50 ft"],
+    scores : [16, 12, 14, 6, 12, 8],
+    saves : ["", "", "Prof", "", "", ""],
+    skills : {
+        "Perception" : 3,
+    },
+    senses : ["Darkvision 60 ft ", "The hound has advantage on Wisdom (Perception) checks that rely on hearing or smell."],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Lava Spittle (2 Ferocity)",
+        description : desc([
+            "The hound makes a signature",
+            "attack. On a hit, the attack deals an extra PB damage, and",
+            "a creature the hound chooses within 5 feet of them other than",
+            "the target takes PB fire damage.",
+        ]),
+    }, {
+        name : "3rd Level: Brutal Charge (5 Ferocity)",
+        description : desc([
+            "The hound can move",
+            "up to their speed without provoking opportunity attacks.",
+            "During or at the end of this move, they can make a signature",
+            "attack against one target.",
+        ]),
+    }, {
+        name : "5th Level: Fire Breath (8 Ferocity)",
+        description : desc([
+            "The hound exhales fire",
+            "in a 15-foot cone. Each creature in that area must make a",
+            "DC 10 plus PB Dexterity saving throw, taking PBd6",
+            "fire damage on a failed save, or half as much",
+            "damage on a successful one.",
+        ]),
+    }],
+    trait : [{
+        name : "Consult Hell (1/Long Rest)",
+        description : desc([
+            "The hound's caregiver can talk to",
+            "the hound about a specific course of action that the caregiver",
+            "plans to take within the next 30 minutes, tapping into divinatory",
+            "power through the hound's connection to the infernal",
+            "realm. After 1 minute, the hound then gives a response based",
+            "on its own objective prophetic sense of the outcome: one",
+            "bark for good results, two barks for bad results, three barks for",
+            "both good and bad results, and no barks for results that aren't",
+            "especially good or bad.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["mimic"] = {
+	name : "Mimic",
+	source : ["BMC", 20],
+	size : 3,
+	type : "Monstrosity",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["30 ft"],
+    scores : [16, 12, 15, 5, 12, 8],
+    saves : ["", "Prof", "", "", "", ""],
+    damage_immunities : "Acid",
+    condition_immunities : "Prone",
+    skills : {
+        "Stealth" : 3,
+    },
+    senses : ["Darkvision 60 ft "],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Distracting Attack (2 Ferocity)",
+        description : desc([
+            "The mimic makes",
+            "a signature attack. On a hit, the attack deals its normal effects,",
+            "and the next attack made against the target before the start of",
+            "the mimic's next turn has advantage.",
+        ]),
+    }, {
+        name : "3rd Level: Adhesive Pseudopods (5 Ferocity)",
+        description : desc([
+            "The mimic",
+            "attempts to touch each creature of their choice within 5 feet of",
+            "them. Each target must succeed on a DC 10 plus PB Dexterity",
+            "saving throw or be grappled (escape DC 10 plus PB).",
+        ]),
+    }, {
+        name : "5th Level: I'm You (8 Ferocity)",
+        description : desc([
+            "The mimic uses their",
+            "Shapechanger trait to polymorph into one Large or smaller",
+            "creature they can see within 5 feet of them, with this form",
+            "lasting until the start of the mimic's next turn. Other than size,",
+            "the mimic's statistics do not change. After transforming, the",
+            "mimic can make a signature attack against the creature whose",
+            "form they have taken, and that creature must also make a DC",
+            "10 plus PB Wisdom saving throw. On a failure, the creature",
+            "has disadvantage on attack rolls and saving throws, and attacks",
+            "against the creature have advantage, until the start of the mimic's next turn.",
+        ]),
+    }, {
+        name : "Wearable Companion (Bonus Action)",
+        description : desc([
+            "While the mimic is within 5 feet of",
+            "their caregiver, the mimic can cover the caregiver's body and",
+            "take on the appearance of clothing. While wearing the mimic,",
+            "the caregiver can change the appearance of their clothing at",
+            "will (no action required) as long as they are not incapacitated,",
+            "and has advantage on Dexterity (Stealth) checks. Any attack",
+            "that hits the caregiver also hits the mimic, and vice versa, with",
+            "both taking the full damage and effect of the attack.",
+            "While worn in this way, the mimic can't move or take actions",
+            "except to revert to their most recent form (a bonus action),",
+            "which ends the state of being worn by their caregiver. If the",
+            "mimic enters a rampage, the state of being worn ends immediately.",
+            "When the mimic is no longer worn by the caregiver, the",
+            "mimic enters the nearest unoccupied space of their choice.",
+        ])
+    }],
+    trait : [{
+        name : "Shapechanger",
+        description : desc([
+            "The mimic can use their action to polymorph",
+            "into an object or back into their true, amorphous form. Their",
+            "statistics are the same in each form. Any equipment they are",
+            "wearing or carrying isn't transformed. The mimic reverts to",
+            "their true form if they die.",
+        ]),
+    }, {
+        name : "False Appearance (Object Form Only)",
+        description : desc([
+            "While the mimic",
+            "remains motionless, they are indistinguishable from an ordinary object.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["owlbear"] = {
+	name : "Owlbear",
+	source : ["BMC", 21],
+	size : 2,
+	type : "Monstrosity",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["40 ft"],
+    scores : [16, 12, 15, 5, 12, 10],
+    saves : ["Prof", "", "Prof", "", "", ""],
+    skills : {
+        "Athletics" : 5,
+        "Perception" : 3,
+    },
+    senses : ["Darkvision 60 ft ", "The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell."],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Claw (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Slashing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Violent Attack (2 Ferocity)",
+        description : desc([
+            "The owlbear makes a",
+            "signature attack. On a hit, the attack deals an extra PB damage,",
+            "and the owlbear can move the target 5 feet in any direction.",
+        ]),
+    }, {
+        name : "3rd Level: Owlie Oop (5 Ferocity)",
+        description : desc([
+            "The owlbear leaps up to",
+            "20 feet without provoking opportunity attacks. When they",
+            "land, each creature within 5 feet of them must succeed on a",
+            "DC 10 plus PB Strength saving throw or be knocked prone.",
+        ]),
+    }, {
+        name : "5th Level: Bear Hug (8 Ferocity)",
+        description : desc([
+            "The owlbear attempts to",
+            "grab and crush a creature within 5 feet of them that they can",
+            "see, which must make a DC 10 plus PB Dexterity saving throw.",
+            "On a failure, the target takes PBd10 bludgeoning damage and",
+            "is grappled (escape DC 10 plus PB). On a success, the target",
+            "takes half as much damage and is not grappled. Until this grapple",
+            "ends, the target is also restrained. The grapple ends if the",
+            "owlbear uses Bear Hug on another target.",
+        ]),
+    }, {
+        name : "Give a Hoot (Bonus Action) (1/Long Rest)",
+        description : desc([
+            "The owlbear lets loose a unique",
+            "battle cry. If the owlbear's caregiver can hear the cry, the caregiver",
+            "gains 5 times PB temporary hit points.",
+        ])
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["sporeling"] = {
+	name : "Sporeling",
+	source : ["BMC", 22],
+	size : 2,
+	type : "Plant",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["40 ft"],
+    scores : [8, 16, 15, 5, 12, 12],
+    saves : ["", "", "Prof", "", "", ""],
+    damage_immunities : ["Acid", "Poison"],
+    condition_immunities : "Poisoned",
+    skills : {
+        "Perception" : 3,
+    },
+    senses : ["Darkvision 60 ft "],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Corrupting Cough (Signature Attack)",
+        ability : 2,
+        damage : [1, 6, "Acid"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Destabilizing Attack (2 Ferocity)",
+        description : desc([
+            "The sporeling",
+            "makes a signature attack. On a hit, the attack deals its normal",
+            "effects, and the target has disadvantage on the next attack roll",
+            "they make before the start of the sporeling's next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Spore Burst (5 Ferocity)",
+        description : desc([
+            "Each creature of the",
+            "sporeling's choice within 5 feet of them must succeed on a",
+            "DC 10 plus PB Constitution saving throw or become poisoned",
+            "until the start of the sporeling's next turn.",
+        ]),
+    }, {
+        name : "5th Level: Hallucinogenic Spores (8 Ferocity)",
+        description : desc([
+            "Each enemy",
+            "within 10 feet of the sporeling must make a DC 10 plus PB",
+            "Wisdom saving throw. On a failure, the sporeling chooses",
+            "whether the target creature uses their reaction to make a",
+            "melee attack against another creature of the sporeling's choice",
+            "within the target creature's reach, or whether the target creature falls prone.",
+        ]),
+    }, {
+        name : "Invigorating Spores (Bonus Action) (1/Long Rest)",
+        description : desc([
+            "While the sporeling's",
+            "caregiver is within 30 feet of them, the sporeling can use a",
+            "bonus action to give the caregiver advantage on saving throws",
+            "for 1 minute.",
+        ])
+    }],
+    trait : [{
+        name : "False Appearance",
+        description : desc([
+            "While the sporeling remains motionless, they are indistinguishable from an ordinary fungus.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
+
+
+CreatureList["worg"] = {
+	name : "Worg",
+	source : ["BMC", 23],
+	size : 2,
+	type : "Monstrosity",
+	alignment : "Unaligned",
+	companion : ["beastheart companion", "beastheart companion protector"],
+	companionApply : "beastheart companion",
+	ac : "13+Prof",
+	hp : 7,
+	hd : [1, 8],
+	hdLinked : ["beastheart"],
+	challengeRating : "20",
+    speed : ["50 ft"],
+    scores : [16, 15, 14, 7, 12, 10],
+    saves : ["Prof", "Prof", "", "", "", ""],
+    skills : {
+        "Perception" : 3,
+    },
+    senses : ["Darkvision 60 ft "],
+    proficiencyBonus : 2,
+    proficiencyBonusLinked : true,
+    attacksAction : 1,
+    attacks : [{
+        name : "Bite (Signature Attack)",
+        ability : 1,
+        damage : [1, 6, "Piercing"],
+        range : "Melee (5 ft)",
+        description : "",
+        modifiers : ["", "Prof"],
+        abilitytodamage : false,
+    }],
+    features : [{
+        name : "1st Level: Overwhelming Attack (2 Ferocity)",
+        description : desc([
+            "Te worg makes",
+            "a signature attack. On a hit, the attack deals an extra PB",
+            "damage, and the target can't take reactions until the start of the",
+            "worg's next turn.",
+        ]),
+    }, {
+        name : "3rd Level: Brutal Charge (5 Ferocity)",
+        description : desc([
+            "Te worg moves up",
+            "to their speed without provoking opportunity attacks. During",
+            "or at the end of this move, they can make a signature attack",
+            "against one target.",
+        ]),
+    }, {
+        name : "5th Level: Bite Frenzy (8 Ferocity)",
+        description : desc([
+            "Te worg makes bite",
+            "attacks against PB creatures of their choice within 5 feet of",
+            "them. On a hit, a target is knocked prone.",
+        ]),
+    }],
+    trait : [{
+        name : "Move as One",
+        description : desc([
+            "While the worg's caregiver is mounted on the",
+            "worg, opportunity attacks against the worg or their caregiver",
+            "are made with disadvantage. Te worg's caregiver can mount",
+            "or dismount the worg by spending 5 feet of movement.",
+        ]),
+    }],
+	calcChanges : {
+		hp : function (totalHD, HDobj, prefix) {
+			if (!classes.known.beastheart) return;
+			var beaLvl = classes.known.beastheart.level;
+			HDobj.alt.push(7 + beaLvl * 7);
+			HDobj.altStr.push(" = 7 as a base\n + " + (beaLvl * 7) + " from caregiver's level");
+		},
+		setAltHp : true,
+		hpForceRecalc : true
+	},
+}
